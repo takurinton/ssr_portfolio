@@ -1,9 +1,10 @@
 import express from 'express';
 import fetch from 'node-fetch';
-// import React from 'react';
-// import { renderToString } from 'react-dom/server';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
 
-// import Home from './Home'
+import Home from './Home'
+import About from './About'
 
 const app = express();
 
@@ -15,8 +16,15 @@ const getPost = async () => {
 }
 
 app.get('/', async (req, res) => {
-  const posts = await getPost();
-  const html = JSON.stringify(posts)
-  // const html = renderToString(<Home />)
+  // const posts = await getPost();
+  // const html = JSON.stringify(posts)
+  const html = renderToString(<Home />)
+  await res.send(html);
+});
+
+app.get('/about', async (req, res) => {
+  // const posts = await getPost();
+  // const html = JSON.stringify(posts)
+  const html = renderToString(<About />)
   await res.send(html);
 });

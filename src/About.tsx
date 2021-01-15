@@ -3,8 +3,8 @@ import * as React from 'react';
 const Home = () => {
     return (
         <div>
-            <a href="/about">about</a>
-            <h1>hello world</h1>
+            <a href="/">home</a>
+            <h1>hello about</h1>
         </div>
     )
 }
