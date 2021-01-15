@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Home = () => {
+const Home: React.FC = () => {
     return (
         <div>
             <a href="/about">about</a>
