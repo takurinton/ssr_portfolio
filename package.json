@@ -2,11 +2,8 @@
   "name": "ssr_portfolio",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node ./dist/server/server.js",
-    "build": "npm run lint:ng && npm run build:ng && npm run build:ts",
-    "build:ts": "webpack --config webpack.config.js",
-    "build:ng": "ng build --ts-config ./src/app/tsconfig.json",
-    "lint:ng": "ng lint"
+    "dev": "node ./dist/server.js",
+    "build": "rm -rf ./dist/ && webpack --config webpack.config.js"
   },
   "dependencies": {
     "@types/marked": "^1.2.1",
