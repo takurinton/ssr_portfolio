@@ -118,3 +118,5 @@ dist
 !.vscode/extensions.json
 *.code-workspace
 .now
+
+.vercel
