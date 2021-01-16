@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PostProps } from '../props/post'
+import { PostProps } from '../../props/post'
 
 const Post: React.FC<PostProps> = (props) => {
     return (
