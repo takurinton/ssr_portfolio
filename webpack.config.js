@@ -3,7 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     mode: process.env.NODE_ENV,
-    entry: './src/server.tsx',
+    entry: './src/server/server.tsx',
     target: 'node',
     node: {
         __filename: false,

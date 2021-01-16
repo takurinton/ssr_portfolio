@@ -1,8 +1,9 @@
 {
   "name": "ssr_portfolio",
   "version": "1.0.0",
+  "main": "dist/server.js", 
   "scripts": {
-    "dev": "node ./dist/server.js",
+    "dev": "NODE_ENV=production node ./dist/server.js",
     "build": "rm -rf ./dist/ && webpack --config webpack.config.js"
   },
   "dependencies": {

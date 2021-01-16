@@ -3,11 +3,11 @@ import fetch from 'node-fetch';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
-import Home from './Home'
-import About from './About'
-import Post from './Post'
+import Home from '../frontend/Home'
+import About from '../frontend/About'
+import Post from '../frontend/Post'
 
-import { PostProps } from './props/post'
+import { PostProps } from '../props/post'
 
 const app = express();
 
