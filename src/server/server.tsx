@@ -1,11 +1,14 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import * as React from 'react';
-import { renderToString } from 'react-dom/server';
+import { hydrate } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 
 import Home from '../client/pages/Home'
 import About from '../client/pages/About'
 import Post from '../client/pages/Post'
+
+import Html from '../client/base/Html'
 
 import { PostProps } from '../props/post'
 
@@ -24,13 +27,31 @@ const getPost = async (id: string) => {
 }
 
 app.get('/', async (req, res) => {
-  const html: string = renderToString(<Home />)
-  await res.send(html);
+  const data = {
+    title: 'たくりんとん | home',
+    slug: `http://localhost:3000/`,
+    children: Home,
+    props: '',
+  }
+
+  renderToStaticMarkup(<Html {...data} />).pipe(res)
+
+  // await res.send(renderd);
 });
 
 app.get('/about', async (req, res) => {
-  const html: string = renderToString(<About />)
-  await res.send(html);
+  const html = Html({
+    title: 'たくりんとん | about',
+    slug: `http://localhost:3000/`,
+    children: About,
+    props: '',
+  })
+  const renderd = renderToStaticMarkup(
+    React.createElement(html)
+  )
+  console.log(html)
+  console.log(renderd)
+  await res.send(renderd);
 });
 
 // const Posts: React.FC<any> = (props) => <h1>{ props }</h1>
@@ -44,6 +65,6 @@ app.get('/about', async (req, res) => {
 app.get('/post/:id', async (req, res) => {
   const id = req.params.id
   const post: PostProps = await getPost(id);
-  const html: string = renderToString(<Post {...post} />)
+  const html: string = renderToStaticMarkup(<Post {...post} />)
   await res.send(html)
 })

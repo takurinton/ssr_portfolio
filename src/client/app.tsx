@@ -1,14 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+// import fetch from 'node-fetch';
+import { hydrate } from 'react-dom/server';
+import Home from './pages/Home';
 
-import { BrowserRouter } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
-
-import Routes from './base/routes';
-
-ReactDOM.hydrate(
-    <BrowserRouter>
-        {renderRoutes(Routes)}
-    </BrowserRouter>,
-    document.getElementById('app')
-);
+hydrate(<Home />, document.getElementById('main'));
