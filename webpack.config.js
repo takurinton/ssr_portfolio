@@ -3,11 +3,11 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     mode: process.env.NODE_ENV,
-    entry: {
-        server: './src/server/server.tsx',
-        main: './src/client/app.tsx'
-    }, 
-    // entry: './src/client/app.tsx',
+    // entry: {
+    //     server: './src/server/server.tsx',
+    //     main: './src/client/app.tsx'
+    // }, 
+    entry: './src/server/server.tsx',
     target: 'node',
     node: {
         __filename: false,

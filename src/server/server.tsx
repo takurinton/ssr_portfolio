@@ -27,30 +27,32 @@ const getPost = async (id: string) => {
 }
 
 app.get('/', async (req, res) => {
-  const data = {
-    title: 'たくりんとん | home',
-    slug: `http://localhost:3000/`,
-    children: Home,
-    props: '',
-  }
+  const renderd = renderToStaticMarkup(
+    React.createElement(
+      Html({
+        title: 'たくりんとん | home',
+        slug: `http://localhost:3000/`,
+        children: Home,
+        props: '',
+      })
+    )
+  );
 
-  renderToStaticMarkup(<Html {...data} />).pipe(res)
-
-  // await res.send(renderd);
+  await res.send(renderd);
 });
 
 app.get('/about', async (req, res) => {
-  const html = Html({
-    title: 'たくりんとん | about',
-    slug: `http://localhost:3000/`,
-    children: About,
-    props: '',
-  })
   const renderd = renderToStaticMarkup(
-    React.createElement(html)
-  )
-  console.log(html)
-  console.log(renderd)
+    React.createElement(
+      Html({
+        title: 'たくりんとん | about',
+        slug: `http://localhost:3000/`,
+        children: About,
+        props: '',
+      })
+    )
+  );
+
   await res.send(renderd);
 });
 
@@ -65,6 +67,16 @@ app.get('/about', async (req, res) => {
 app.get('/post/:id', async (req, res) => {
   const id = req.params.id
   const post: PostProps = await getPost(id);
-  const html: string = renderToStaticMarkup(<Post {...post} />)
-  await res.send(html)
+  const renderd = renderToStaticMarkup(
+    React.createElement(
+      Html({
+        title: 'たくりんとん | home',
+        slug: `http://localhost:3000/`,
+        children: Post,
+        props: post,
+      })
+    )
+  );
+
+  await res.send(renderd)
 })
