@@ -4,11 +4,11 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "npm run build && npm run dev",
-    "dev": "NODE_ENV=production node ./dist/server.js",
+    "dev": "NODE_ENV=production node ./assets/server/server.js",
     "build": "npm run build:client && npm run build:server && npm run build:babel",
     "build:babel": "rm -rf ./assets/ && babel src --extensions '.ts,.tsx' --out-dir assets",
     "build:client": "rm -rf ./dist/ && webpack --config webpack.client.config.js",
-    "build:server": "rm -rf ./dist/ && webpack --config webpack.server.config.js", 
+    "build:server": "rm -rf ./dist/ && webpack --config webpack.server.config.js",
     "clear": "rm -rf ./dist/ && rm -rf ./assets/"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@types/marked": "^1.2.1",
+    "core-js": "^3.8.2",
     "express": "^4.17.1",
     "marked": "^1.2.7",
     "node-fetch": "^2.6.1",
