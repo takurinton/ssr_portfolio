@@ -40,7 +40,7 @@ const Html = (props: Props) => {
                 <div id="main">
                     <props.children {...props.props} />
                 </div>
-                <script async defer src='./dist/server.js' />
+                <script async defer src='./server.js' />
             </body>
         </html>
     );

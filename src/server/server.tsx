@@ -1,7 +1,5 @@
 import express from 'express';
-import fetch from 'node-fetch';
 import * as React from 'react';
-import { hydrate } from 'react-dom/server';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import Home from '../client/pages/Home'
@@ -10,21 +8,15 @@ import Post from '../client/pages/Post'
 
 import Html from '../client/base/Html'
 
+import { getPosts, getPost } from '../utils/api/blog/post'
+
 import { PostProps } from '../props/post'
 
 const app = express();
 
+app.use(express.static('dist'));
+
 app.listen(3000);
-
-const getPosts = async () => {
-  const res = await fetch(`https://api.takurinton.com/blog/v1/`)
-  return await res.json()
-}
-
-const getPost = async (id: string) => {
-  const res = await fetch(`https://api.takurinton.com/blog/v1/post/${id}/`)
-  return await res.json()
-}
 
 app.get('/', async (req, res) => {
   const renderd = renderToStaticMarkup(
@@ -33,7 +25,7 @@ app.get('/', async (req, res) => {
         title: 'たくりんとん | home',
         slug: `http://localhost:3000/`,
         children: Home,
-        props: '',
+        props: {},
       })
     )
   );
@@ -48,7 +40,7 @@ app.get('/about', async (req, res) => {
         title: 'たくりんとん | about',
         slug: `http://localhost:3000/`,
         children: About,
-        props: '',
+        props: {},
       })
     )
   );
@@ -65,7 +57,7 @@ app.get('/about', async (req, res) => {
 // })
 
 app.get('/post/:id', async (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
   const post: PostProps = await getPost(id);
   const renderd = renderToStaticMarkup(
     React.createElement(
@@ -78,5 +70,5 @@ app.get('/post/:id', async (req, res) => {
     )
   );
 
-  await res.send(renderd)
+  await res.send(renderd);
 })
