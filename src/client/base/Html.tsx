@@ -49,8 +49,6 @@ const Html = (props: Props) => {
                 <h1>headerがここにはいる</h1>
                 <p><a href="/">トップ</a></p>
                 <p><a href="/about">about</a></p>
-                <p><a href="/post/18">サイバ</a></p>
-                <p><a href="/post/50">Golang</a></p>
 
                 <div id="main"><props.children {...props.props} /></div>
                 <script async defer src={`${localhost}/client.js`} />
