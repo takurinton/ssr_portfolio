@@ -15,34 +15,16 @@ module.exports = {
         {
           test: /\.ts(x?)$/,
           use: [
-              {
-                loader: "babel-loader",
-                options: {
-                  presets: [
-                    [
-                      '@babel/preset-env',
-                      {
-                        useBuiltIns: 'usage',
-                        corejs: 3,
-                      },
-                    ],
-                    [
-                      '@babel/preset-react',
-                      {
-                        useBuiltIns: 'usage',
-                        corejs: 3,
-                      },
-                    ],
-                  ],
-                },
-              }, {
-                loader: "ts-loader",
-                options: {
-                  transpileOnly: true,
-                  configFile: "tsconfig.json",
-                },
+            "babel-loader",
+            "linaria/loader",
+            {
+              loader: "ts-loader",
+              options: {
+                transpileOnly: true,
+                configFile: "tsconfig.json",
               },
-            ]
+            },
+          ]
         }
       ]
     },

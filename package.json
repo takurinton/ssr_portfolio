@@ -4,6 +4,7 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "npm run build && npm run dev",
+    "dev:pre": "npm run build:client && npm run build:babel && npm run dev", 
     "dev": "NODE_ENV=production node ./assets/server/server.js",
     "dev:dist": "NODE_ENV=production node ./dist/server.js",
     "build": "npm run build:client && npm run build:server && npm run build:babel",
@@ -24,6 +25,7 @@
     "core-js": "^3.8.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "linaria": "^3.0.0-beta.1",
     "marked": "^1.2.7",
     "node-fetch": "^2.6.1",
     "react": "^17.0.1",

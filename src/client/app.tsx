@@ -1,4 +1,8 @@
 import * as React from 'react';
 import { hydrate } from 'react-dom/server';
-import { Home } from './pages/Home';
+import Routes from './base/routes';
 
+hydrate(
+    <Routes />,
+    document.getElementById('main')
+);
