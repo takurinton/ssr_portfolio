@@ -3,8 +3,8 @@ import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 import { Home } from '../client/pages/Home'
-import About from '../client/pages/About'
-import Post from '../client/pages/Post'
+import { About } from '../client/pages/About'
+import { Post } from '../client/pages/Post'
 
 import Html from '../client/base/Html'
 

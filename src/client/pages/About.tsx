@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const About: React.FC = () => {
+export const About: React.FC = () => {
     const [count, setCount] = React.useState(0)
 
     return (
@@ -10,5 +10,3 @@ const About: React.FC = () => {
         </div>
     )
 }
-
-export default About;

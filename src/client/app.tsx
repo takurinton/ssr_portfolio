@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { hydrate } from 'react-dom/server';
+import ReactDOM from 'react-dom';
 import Routes from './base/routes';
 
-hydrate(
+ReactDOM.hydrate(
     <Routes />,
     document.getElementById('main')
 );
