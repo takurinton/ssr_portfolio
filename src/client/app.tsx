@@ -2,5 +2,3 @@ import * as React from 'react';
 import { hydrate } from 'react-dom/server';
 import { Home } from './pages/Home';
 
-console.log('takurinton')
-console.log(<Home />)
