@@ -18,7 +18,8 @@ app.use(express.static('dist'));
 
 app.listen(3000);
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+  const posts = await getPosts();
   const renderd = renderToStaticMarkup(
     React.createElement(
       Html({
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
         children: Home,
         discription: undefined, 
         image: undefined, 
-        props: {},
+        props: posts,
       })
     )
   );
@@ -70,11 +71,17 @@ app.get('/post/:id', async (req, res) => {
         slug: `http://localhost:3000/`,
         children: Post,
         discription: undefined, 
-        image: undefined, 
+        image: undefined,
         props: post,
       })
     )
   );
 
   res.send(renderd);
+})
+
+app.get('/post/fetch/:id', async (req, res) => {
+  const id = req.params.id;
+  const post: PostProps = await getPost(id);
+  res.send(post);
 })

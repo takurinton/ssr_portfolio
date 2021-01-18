@@ -52,9 +52,7 @@ const Html = (props: Props) => {
                 <p><a href="/post/18">サイバ</a></p>
                 <p><a href="/post/50">Golang</a></p>
 
-                <div id="main">
-                    <props.children {...props.props} />
-                </div>
+                <div id="main"><props.children {...props.props} /></div>
                 <script async defer src={`${localhost}/client.js`} />
             </body>
         </html>

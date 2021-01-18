@@ -9,4 +9,3 @@ export const Post: React.FC<PostProps> = (props) => {
         </div>
     )
 }
-

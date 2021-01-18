@@ -6,6 +6,6 @@ export const getPosts = async () => {
 }
   
 export const getPost = async (id: string) => {
-    const res = await fetch(`https://api.takurinton.com/blog/v1/post/${id}/`)
+    const res = await fetch(`https://api.takurinton.com/blog/v1/post/${id}`)
     return await res.json()
 }
