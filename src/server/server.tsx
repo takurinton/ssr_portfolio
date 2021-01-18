@@ -67,11 +67,11 @@ app.get('/post/:id', async (req, res) => {
   const renderd = renderToStaticMarkup(
     React.createElement(
       Html({
-        title: 'たくりんとん | home',
+        title: `${post.title} | たくりんとんのブログ`,
         slug: `http://localhost:3000/`,
         children: Post,
-        discription: undefined, 
-        image: undefined,
+        discription: `${post.title} | たくりんとんのブログ`, 
+        image: `https://takurinton.com${post.contents_image_url}`,
         props: post,
       })
     )
