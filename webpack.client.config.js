@@ -1,6 +1,6 @@
-const config = require('./webpack.config');
+const config = require('./webpack.common.config');
 
 module.exports = {
     ...config, 
-    // target: 'web',
+    target: 'web',
 };

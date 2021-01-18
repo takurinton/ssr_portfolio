@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
     // mode: process.env.NODE_ENV,
     mode: 'development', 
-    target: 'web', 
+    // target: 'web', 
     entry: {
       // server: './src/server/server.tsx', 
       client: './src/client/app.tsx'

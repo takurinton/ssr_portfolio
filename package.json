@@ -4,7 +4,7 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "npm run build && npm run dev",
-    "dev:assets": "NODE_ENV=production node ./assets/server/server.js",
+    "dev": "NODE_ENV=production node ./assets/server/server.js",
     "dev:dist": "NODE_ENV=production node ./dist/server.js",
     "build": "npm run build:client && npm run build:server && npm run build:babel",
     "build:webpack": "rm -rf ./dist/ && webpack --config webpack.config.js",
