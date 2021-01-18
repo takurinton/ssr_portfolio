@@ -6,6 +6,7 @@ import Home from './pages/Home';
 const render = () => {
     fetch('/')
     .then(res => {
+        console.log(res);
         hydrate(<Home />, document.getElementById('main'))
     })
     .catch(err => { throw new Error('err') })

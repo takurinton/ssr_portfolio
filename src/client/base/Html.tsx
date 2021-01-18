@@ -1,7 +1,8 @@
 import * as React from 'react';
 
+const localhost = 'http://localhost:3000'
+
 const Head = (props) => {
-    console.log(props.description);
     if (props.description == undefined) props.description = 'たくりんとんのポートフォリオです';
     if (props.image == undefined) props.image = 'https://www.takurinton.com/me.jpe';
     return (
@@ -29,8 +30,14 @@ const Head = (props) => {
 interface Props {
     children: () => React.FC;
     title: string;
+    image: string,
+    discription: string,
+    // data: {
+    //     image: string, 
+    //     discription: string,
+    // }
+    slug: string, 
     props?: any;
-    slug: string;
 }
 
 
@@ -40,10 +47,15 @@ const Html = (props: Props) => {
             <Head {...props} />
             <body>
                 <h1>headerがここにはいる</h1>
+                <p><a href="/">トップ</a></p>
+                <p><a href="/about">about</a></p>
+                <p><a href="/post/18">サイバ</a></p>
+                <p><a href="/post/50">Golang</a></p>
+
                 <div id="main">
                     <props.children {...props.props} />
                 </div>
-                <script async defer src='./client/app.js' />
+                <script async defer src={`${localhost}/client.js`} />
             </body>
         </html>
     );

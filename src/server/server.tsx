@@ -14,7 +14,7 @@ import { PostProps } from '../props/post'
 
 const app = express();
 
-app.use(express.static('assets'));
+app.use(express.static('dist'));
 
 app.listen(3000);
 
@@ -25,6 +25,8 @@ app.get('/', (req, res) => {
         title: 'たくりんとん | home',
         slug: `http://localhost:3000/`,
         children: Home,
+        discription: undefined, 
+        image: undefined, 
         props: {},
       })
     )
@@ -40,6 +42,8 @@ app.get('/about', (req, res) => {
         title: 'たくりんとん | about',
         slug: `http://localhost:3000/`,
         children: About,
+        discription: undefined, 
+        image: undefined, 
         props: {},
       })
     )
@@ -65,6 +69,8 @@ app.get('/post/:id', async (req, res) => {
         title: 'たくりんとん | home',
         slug: `http://localhost:3000/`,
         children: Post,
+        discription: undefined, 
+        image: undefined, 
         props: post,
       })
     )

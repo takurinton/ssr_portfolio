@@ -3,6 +3,10 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     mode: process.env.NODE_ENV,
+    entry: {
+      // server: './src/server/server.tsx', 
+      client: './src/client/app.tsx'
+    },
     node: {
         __filename: false,
         __dirname: false
@@ -14,17 +18,35 @@ module.exports = {
         {
           test: /\.tsx?$/,
           use: [
-            "babel-loader",
-            // "linaria/loader",
-            {
-              loader: "ts-loader",
-              options: {
-                transpileOnly: true,
-                configFile: "tsconfig.json",
+              {
+                loader: "babel-loader",
+                options: {
+                  presets: [
+                    [
+                      '@babel/preset-env',
+                      {
+                        useBuiltIns: 'usage',
+                        corejs: 3,
+                      },
+                    ],
+                    [
+                      '@babel/preset-react',
+                      {
+                        useBuiltIns: 'usage',
+                        corejs: 3,
+                      },
+                    ],
+                  ],
+                },
+              }, {
+                loader: "ts-loader",
+                options: {
+                  transpileOnly: true,
+                  configFile: "tsconfig.json",
+                },
               },
-            },
-          ],
-        },
+            ]
+        }
       ]
     },
     resolve: {

@@ -1,0 +1,11 @@
+{
+    // 指定した設定を継承する
+    "extends": [
+        "airbnb", 
+        "airbnb/hooks"
+    ], 
+    // DOM操作のコードでエラーが出ないようにしてる
+    "env": {
+        "browser": true
+    }
+}
