@@ -10,29 +10,22 @@ module.exports = {
     externals: [nodeExternals()], 
     devtool: 'source-map',
     module: {
-        rules: [
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: [
+            "babel-loader",
+            // "linaria/loader",
             {
-                test: /\.tsx?$/,
-                use: [
-                    {
-                      loader: "babel-loader",
-                      options: {
-                        presets: [
-                          "@babel/preset-react",
-                          "@babel/preset-env",
-                          "linaria/babel",
-                        ],
-                      },
-                    }, {
-                      loader: "ts-loader",
-                      options: {
-                        transpileOnly: true,
-                        configFile: "tsconfig.json",
-                      },
-                    },
-                  ]
-              }
-        ]
+              loader: "ts-loader",
+              options: {
+                transpileOnly: true,
+                configFile: "tsconfig.json",
+              },
+            },
+          ],
+        },
+      ]
     },
     resolve: {
         extensions: ['.ts', '.js', '.tsx', '.json', '.css', '.scss']

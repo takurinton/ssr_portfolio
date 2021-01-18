@@ -14,11 +14,11 @@ import { PostProps } from '../props/post'
 
 const app = express();
 
-app.use(express.static('dist'));
+app.use(express.static('assets'));
 
 app.listen(3000);
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
   const renderd = renderToStaticMarkup(
     React.createElement(
       Html({
@@ -30,10 +30,10 @@ app.get('/', async (req, res) => {
     )
   );
 
-  await res.send(renderd);
+  res.send(renderd);
 });
 
-app.get('/about', async (req, res) => {
+app.get('/about', (req, res) => {
   const renderd = renderToStaticMarkup(
     React.createElement(
       Html({
@@ -45,7 +45,7 @@ app.get('/about', async (req, res) => {
     )
   );
 
-  await res.send(renderd);
+  res.send(renderd);
 });
 
 // const Posts: React.FC<any> = (props) => <h1>{ props }</h1>
@@ -70,5 +70,5 @@ app.get('/post/:id', async (req, res) => {
     )
   );
 
-  await res.send(renderd);
+  res.send(renderd);
 })

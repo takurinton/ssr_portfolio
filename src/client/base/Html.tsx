@@ -1,10 +1,13 @@
 import * as React from 'react';
 
 const Head = (props) => {
+    console.log(props.description);
+    if (props.description == undefined) props.description = 'たくりんとんのポートフォリオです';
+    if (props.image == undefined) props.image = 'https://www.takurinton.com/me.jpe';
     return (
         <head>
             <title>{props.title}</title>
-            <meta name="description" content="たくりんとんのポートフォリオです" />
+            <meta name="description" content={props.discription} />
             <meta property="og:title" content={props.title} />
             <meta property="og:description" content={props.description} />
             <meta property="og:type" content="blog" />
@@ -18,7 +21,7 @@ const Head = (props) => {
             <meta name="twitter:image" content={props.image} />
             <link rel="shortcut icon" href={"https://www.takurinton.com/me.jpeg"} />
             <link rel="apple-touch-icon" href={"https://www.takurinton.com/me.jpeg"} />
-            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />   
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />
       </head>
     )
 }
@@ -40,7 +43,7 @@ const Html = (props: Props) => {
                 <div id="main">
                     <props.children {...props.props} />
                 </div>
-                <script async defer src='./app.js' />
+                <script async defer src='./client/app.js' />
             </body>
         </html>
     );
