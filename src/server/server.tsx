@@ -2,7 +2,7 @@ import express from 'express';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-import Home from '../client/pages/Home'
+import { Home } from '../client/pages/Home'
 import About from '../client/pages/About'
 import Post from '../client/pages/Post'
 

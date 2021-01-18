@@ -1,22 +1,19 @@
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+// require("dotenv").config();
 
 module.exports = {
-    mode: process.env.NODE_ENV,
+    // mode: process.env.NODE_ENV,
+    mode: 'development', 
+    target: 'web', 
     entry: {
       // server: './src/server/server.tsx', 
       client: './src/client/app.tsx'
     },
-    node: {
-        __filename: false,
-        __dirname: false
-    },
-    // externals: [nodeExternals()], 
-    // devtool: 'source-map',
+    devtool: 'source-map',　// client.js.mapが生成される
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
+          test: /\.ts(x?)$/,
           use: [
               {
                 loader: "babel-loader",
