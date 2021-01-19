@@ -1,5 +1,5 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // require("dotenv").config();
 
 module.exports = {
@@ -27,19 +27,34 @@ module.exports = {
             },
           ]
         }, 
-        { 
-          test: /(\.scss)$/,
+        {
+          test: /\.(sa|sc|c)ss$/, 
           use: [
-            // loaderは後ろから適用される．Queue
-            "style-loader", 
-            "css-loader", 
-            "sass-loader" 
+            'style-loader', 
+            'css-loader', 
+            'sass-loader'
           ]
         }
+      //   { 
+      //     test: /\.(sa|sc|c)ss$/,
+      //     exclude: /node_modules/,
+      //     use: [
+      //       MiniCssExtractPlugin.loader,
+      //       {
+      //         loader: 'css-loader',
+      //       },
+      //       'sass-loader'
+      //     ]
+      //   }
       ]
     },
+    // plugins: [
+    //   new MiniCssExtractPlugin({
+    //     filename: 'css/style.css',  // /dist/css/sample.cssに出力
+    //   })
+    // ], 
     resolve: {
-        extensions: ['.ts', '.js', '.tsx',]
+        extensions: ['.ts', '.js', '.tsx', '.css', '.scss']
     },
     output: {
         filename: '[name].js',

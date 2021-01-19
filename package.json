@@ -34,6 +34,7 @@
     "react-dom": "^17.0.1",
     "react-highlight": "^0.13.0",
     "react-highlight.js": "^1.0.7",
+    "sass": "^1.32.4",
     "ts-loader": "^8.0.14",
     "tslint-loader": "^3.5.4"
   },
