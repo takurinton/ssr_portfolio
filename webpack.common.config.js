@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // require("dotenv").config();
 
 module.exports = {
@@ -25,11 +26,20 @@ module.exports = {
               },
             },
           ]
+        }, 
+        { 
+          test: /(\.scss)$/,
+          use: [
+            // loaderは後ろから適用される．Queue
+            "style-loader", 
+            "css-loader", 
+            "sass-loader" 
+          ]
         }
       ]
     },
     resolve: {
-        extensions: ['.ts', '.js', '.tsx', '.json', '.css', '.scss']
+        extensions: ['.ts', '.js', '.tsx',]
     },
     output: {
         filename: '[name].js',
