@@ -1,32 +1,5 @@
 import * as React from 'react';
-
-export type Posts = {
-    next: string | null, 
-    previous: string | null, 
-    total: number, 
-    category: any,
-    current: number, 
-    results: PostProps[], 
-    page_size: string, 
-    first: string, 
-    last: string
-}
-
-export type PostProps = {
-    id: number,
-    title: string, 
-    category: string,
-    contents: string, 
-    contents_image_url: string,
-    pub_date: string,
-    comment: CommentProps[]
-}
-
-export interface CommentProps {
-    name: string, 
-    contents: string, 
-    pub_date: string
-}
+import { PostsProps, PostProps } from '../../types/types'
 
 const Post: React.FC<PostProps> = (props: PostProps) => {
     return (
@@ -37,7 +10,7 @@ const Post: React.FC<PostProps> = (props: PostProps) => {
 }
 
 
-export const Home: React.FC<Posts> = (props: Posts) => {
+export const Home: React.FC<PostsProps> = (props: PostsProps) => {
     return (
         <div>
             {

@@ -10,7 +10,7 @@ import Html from '../client/base/Html'
 
 import { getPosts, getPost } from '../utils/api/blog/post'
 
-import { PostProps } from '../props/post'
+import { PostProps } from '../types/types'
 
 const app = express();
 
