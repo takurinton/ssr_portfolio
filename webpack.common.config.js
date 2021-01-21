@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // require("dotenv").config();
 
 module.exports = {
@@ -28,57 +28,23 @@ module.exports = {
             },
           ]
         }, 
-        // {
-        //   test: /.s?css$/,
-        //   use: ExtractTextPlugin.extract({
-        //     fallback: 'style-loader',
-        //     use: [
-        //       {
-        //         loader: 'css-loader',
-        //         options: {
-        //           sourceMap: true,
-        //           importLoader: true
-        //         }
-        //       },
-        //       {
-        //         loader: 'postcss-loader',
-        //       },
-        //       {
-        //         loader: 'sass-loader'
-        //       }
-        //     ]
-        //   })
-        // }
-        // {
-        //   test: /\.scss$/, 
-        //   use: [
-        //     'style-loader', 
-        //     'css-loader', 
-        //     'sass-loader'
-        //   ]
-        // }
         { 
-          test: /\.(sa|sc|c)ss$/,
-          exclude: /node_modules/,
+          test: /.css?$/,
           use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-            },
-            {
-              loader: 'postcss-loader',
-            },
-            {
-              loader: 'sass-loader'
-            }
-            // 'sass-loader'
-          ]
+            MiniCssExtractPlugin.loader, // これをしてpluginのところにMiniCssExtractPluginを書くとCSSが追加される
+            // "style-loader",
+            "css-loader",
+          //   {
+          //     loader: 'sass-loader',
+          //   }
+          ],
+          // exclude: /node_modules/,
         }
       ]
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'css/[name].css',  // /dist/css/client.cssに出力
+        filename: '[contenthash].css',  // 
       })
     ], 
     resolve: {

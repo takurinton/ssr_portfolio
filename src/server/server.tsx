@@ -1,23 +1,24 @@
 import express from 'express';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
+const sassMiddleware = require('node-sass-middleware');
+const path = require('path');
 
-import { Home } from '../client/pages/Home'
-import { About } from '../client/pages/About'
-import { Post } from '../client/pages/Post'
+import { Home } from '../client/pages/Home';
+import { About } from '../client/pages/About';
+import { Post } from '../client/pages/Post';
 
-import Html from '../client/base/Html'
+import Html from '../client/base/Html';
 
-import { getPosts, getPost } from '../utils/api/blog/post'
+import { getPosts, getPost } from '../utils/api/blog/post';
 
-import { PostProps } from '../types/types'
+import { PostProps } from '../types/types';
 
-import { getParams } from '../utils/getParams'
+import { getParams } from '../utils/getParams';
 
 const app = express();
 
 app.use(express.static('dist'));
-
 app.listen(3000);
 
 
@@ -58,14 +59,6 @@ app.get('/about', (req, res) => {
 
   res.send(renderd);
 });
-
-// const Posts: React.FC<any> = (props) => <h1>{ props }</h1>
-
-// app.get('/post', async (req, res) => {
-//   const posts = await getPosts()
-//   const html: string = renderToString(<Posts {...posts} />)
-//   await res.send(html)
-// })
 
 app.get('/post/:id', async (req, res) => {
   const id = req.params.id;

@@ -9,11 +9,13 @@ module.exports = {
 					"node": "current"
 				}
 			}
-		]
+		], 
+    // "@linaria", 
+    "linaria/babel",
   ],
   plugins: [
     "@babel/plugin-transform-typescript",
     "@babel/plugin-transform-react-jsx",
-    "babel-plugin-transform-scss", 
+    // "babel-plugin-transform-scss", 
   ],
 };

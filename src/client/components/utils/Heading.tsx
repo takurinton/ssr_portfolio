@@ -1,11 +1,19 @@
 import * as React from 'react';
-// const css = require('../../../../src/styles/text.scss')
-// import '../../../../src/styles/text.scss'
+import { css } from "linaria";
+
+import { h2, theme_text, thick } from '../../../styles/theme';
+
+const title = css`
+    margin-bottom: 10px;
+    font-size: ${h2}; 
+    color: ${theme_text};
+    font-weight: ${thick};
+`;
 
 export const Heading = (text: {text: string}) => {
     return (
-        <div>
+        <h1 className={title}>
             {text.text}
-        </div>
+        </h1>
     )
 }
