@@ -1,0 +1,75 @@
+@import '../theme.scss';
+
+// pagination
+.pagination {
+    margin: 20px auto 10%; 
+    position: relative; 
+    @media (max-width: 800px) {
+        .pagination {
+            width: 70%;
+        }
+    }
+    @media (max-width: 500) {
+        .pagination {
+            width: 90%;
+        }
+    }
+}
+
+.nextButton, .prevButton {
+    margin-bottom: 100px; 
+    position: absolute; 
+    color: $button_color;
+    font-weight: $thick;
+    text-decoration: none;
+    font-size: $h4;
+    font-weight: $thick;
+}
+.nextButton {
+    right: 0;
+}
+.prevButton {
+    left: 0;
+}
+
+// dairyreport 
+.main {
+    margin-top: 50px; 
+    text-align: center;
+}
+.home { 
+    width: 60%;
+    margin: auto;
+    @media (max-width: 800px) {
+        width: 80%;
+    }
+}
+
+.items {
+    display: flex; 
+    justify-content: left;
+    flex-wrap: wrap;
+    @media (max-width: 800px) {
+        display: block;
+    }
+}
+
+.box {
+    margin: 3% 1% 3%; 
+    padding: 50px 5% 40px; 
+    box-shadow: 4px 4px 8px gray;
+    width: 38%;
+    text-align: center;
+    background: linear-gradient(90deg, $theme_main 5%, white 5%);
+
+    @media (max-width: 800px) {
+        width: auto;
+    }
+
+    a {
+        font-size: $h5; 
+        color: $theme_text; 
+        font-weight: $thick;
+        text-decoration: none;
+    }
+}

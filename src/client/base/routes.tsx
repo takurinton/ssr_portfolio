@@ -15,8 +15,9 @@ import { getPost, getPosts } from '../../utils/api/blog/post';
 
 const Routes = async () => {
   const pathList = window.location.pathname.split('/');
+  const params = window.location.search;
   if (pathList[1] == '') {
-    await getPosts()
+    await getPosts(params)
     .then(res => 
       ReactDOM.hydrate(
         <Home {...res} />, document.getElementById('main')

@@ -1,0 +1,47 @@
+@import "../theme";
+
+.header {
+    padding: 20px 20% 0;
+    position: relative;
+    vertical-align: middle;
+    height: 50px;
+    background: white;
+}
+.title {
+    padding-left: 20px;
+    float: left; 
+    a {
+        color: $theme_text;
+        text-decoration: none;
+        font-size: $h4;
+        font-weight: $thick;
+    }
+}
+.page {
+    float: right;
+    line-height: 30px;
+    padding-right: 20px;
+    a {
+        color: $theme_text;
+        text-decoration: none;
+        font-size: $h5;
+        font-weight: $thick;
+    }
+}
+@media (max-width: 800px) {
+  .header {
+    height: 100%;
+  }
+  .title, 
+  .page {
+      float: none;
+      text-align: center;
+  }
+  .title {
+      padding-left: 0;
+  }
+  .page {
+      margin-top: 10px;
+      padding-right: 0;
+  }
+}

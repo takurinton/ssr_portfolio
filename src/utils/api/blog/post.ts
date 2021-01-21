@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
-export const getPosts = async () => {
-    const res = await fetch(`https://api.takurinton.com/blog/v1/`)
+export const getPosts = async (qs: string) => {
+    const res = await fetch(`https://api.takurinton.com/blog/v1/${qs}`)
     return await res.json()
 }
   
