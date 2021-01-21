@@ -28,23 +28,18 @@ module.exports = {
             },
           ]
         }, 
-        { 
-          test: /.css?$/,
+        {
+          test: /\.css$/,
           use: [
-            MiniCssExtractPlugin.loader, // これをしてpluginのところにMiniCssExtractPluginを書くとCSSが追加される
-            // "style-loader",
+            MiniCssExtractPlugin.loader, 
             "css-loader",
-          //   {
-          //     loader: 'sass-loader',
-          //   }
           ],
-          // exclude: /node_modules/,
-        }
+        },
       ]
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[contenthash].css',  // 
+        filename: '[contenthash].css',
       })
     ], 
     resolve: {

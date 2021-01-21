@@ -8,8 +8,6 @@
     "build": "rm -rf dist/ && npm run build:client && npm run build:server",
     "build:client": "webpack --config webpack.client.config.js --mode development",
     "build:server": "rm -rf ./assets/ && babel src --config-file ./babel.config.js  -x '.ts,.tsx' -d assets",
-    "build:server:webpack": "webpack --config webpack.server.config.js --mode development",
-    "build:style": "node-sass ./src/styles --output ./dist/css/",
     "clear": "rm -rf ./dist/ && rm -rf ./assets/"
   },
   "dependencies": {

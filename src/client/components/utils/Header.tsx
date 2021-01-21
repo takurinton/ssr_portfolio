@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { css } from "@linaria/core";
+import { css } from "linaria";
+import { styled } from '@linaria/react';
 import { h4, h5, pink_kawaii, theme_text, thick } from '../../../styles/theme';
 
-const header = css`
+const Header_ = styled.header`
     padding: 20px 20% 0;
     position: relative;
     vertical-align: middle;
@@ -13,44 +14,45 @@ const header = css`
 const title = css`
     padding-left: 20px;
     float: left;
-    color: ${theme_text};
-    text-decoration: none;
-    font-size: ${h4};
-    font-weight: ${thick};
+    a {
+        color: ${theme_text};
+        text-decoration: none;
+        font-size: ${h4};
+        font-weight: ${thick};
+    }
 `
 
 const page = css`
     float: right;
     line-height: 30px;
     padding-right: 20px;
-    color: ${theme_text};
-    text-decoration: none;
-    font-size: ${h5};
-    font-weight: ${thick};
-    &:hover {
-        color: ${pink_kawaii};
+    a {
+        color: ${theme_text};
+        text-decoration: none;
+        font-size: ${h5};
+        font-weight: ${thick};
     }
 `
 
 export const Header = () => {
     return (
-        <div className={header} >
+        <Header_>
             <p className={title}>
-                <a href="/"><a>takurinton.com</a></a>
+                <a href="/">takurinton.com</a>
             </p>
             <p className={page}>
-                <a href="/contact"><a>contact</a></a>
+                <a href="/contact">contact</a>
             </p>
             {/* <p className={page}>
                 <Link href="/dairyreport"><a>dailyreport</a></Link>
             </p> */}
             <p className={page}>
-                <a href="/memo"><a>memo</a></a>
+                <a href="/memo">memo</a>
             </p>
             <p className={page}>
-                <a href="/me"><a>me</a></a>
+                <a href="/me">me</a>
             </p>
-        </div>
+        </Header_>
     )
 }
 
