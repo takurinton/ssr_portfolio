@@ -10,8 +10,7 @@ module.exports = {
 				}
 			}
 		], 
-    // "@linaria", 
-    "linaria/babel",
+    "@linaria", 
   ],
   plugins: [
     "@babel/plugin-transform-typescript",

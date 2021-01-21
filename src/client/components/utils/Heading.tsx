@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from "linaria";
+import { css } from "@linaria/core";
 
 import { h2, theme_text, thick } from '../../../styles/theme';
 

@@ -2,9 +2,7 @@ export const theme_main = '#7fd5ea';
 export const theme_text = '#222222';
 export const theme_line = '#a8a8a8';
 export const theme_subtext = '#707070';
-
 export const button_color = '#FF69B4';
-
 export const pink_kawaii = '#FF69B4';
 export const theme_back = '#7fd5ea41';
 

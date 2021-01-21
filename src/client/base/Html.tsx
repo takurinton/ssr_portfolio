@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Header } from '../components/utils/Header';
 
 const localhost = 'http://localhost:3000'
 
@@ -46,7 +47,7 @@ const Html = (props: Props) => {
         <html lang="ja">
             <Head {...props} />
             <body>
-                <h1>headerがここにはいる</h1>
+                <Header />
                 <p><a href="/">トップ</a></p>
                 <p><a href="/about">about</a></p>
 
