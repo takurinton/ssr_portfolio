@@ -12,14 +12,20 @@ import { getPosts, getPost } from '../utils/api/blog/post'
 
 import { PostProps } from '../types/types'
 
+import { getParams } from '../utils/getParams'
+
 const app = express();
 
 app.use(express.static('dist'));
 
 app.listen(3000);
 
+
 app.get('/', async (req, res) => {
-  const posts = await getPosts();
+  const page: string = req.query.page === undefined ? '' : req.query.page;
+  const category: string = req.query.category === undefined ? '' : req.query.category;
+  const qs: string = getParams(page, category);
+  const posts = await getPosts(qs);
   const renderd = renderToStaticMarkup(
     React.createElement(
       Html({

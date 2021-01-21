@@ -6,7 +6,6 @@ import { PostsProps, PostProps } from '../../types/types';
 import { Pagination } from '../../utils/Pagenation';
 
 // const css = require('../../../src/styles/style/blog.scss');
-import '../../../src/styles/style/blog.scss';
 
 const Post: React.FC<PostProps> = (props: PostProps) => {
     return (
@@ -23,10 +22,10 @@ const Posts: React.FC<PostsProps> = (props: PostsProps) => {
 
     return (
         <div>
-            <div className="main">
+            <div>
                 <Heading text={title} />
-                <div className="home" >
-                    <div className="items">
+                <div >
+                    <div>
                     {
                         props.results.map(post => ( <Post {...post} />) )
                     }

@@ -8,7 +8,7 @@
     "build": "npm run build:client && npm run build:server",
     "build:client": "rm -rf ./dist/ && webpack --config webpack.client.config.js --mode development",
     "build:server": "rm -rf ./assets/ && babel src --config-file ./babel.config.js  -x '.ts,.tsx' -d assets",
-    "build:style": "node-sass ./src/styles --output ./dist/css/", 
+    "build:style": "node-sass ./src/styles --output ./dist/css/",
     "clear": "rm -rf ./dist/ && rm -rf ./assets/"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^6.2.0",
     "history": "^5.0.0",
     "linaria": "^3.0.0-beta.1",
     "marked": "^1.2.7",
@@ -38,7 +39,8 @@
     "react-highlight.js": "^1.0.7",
     "sass": "^1.32.4",
     "ts-loader": "^8.0.14",
-    "tslint-loader": "^3.5.4"
+    "tslint-loader": "^3.5.4",
+    "url-loader": "^4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

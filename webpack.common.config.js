@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // require("dotenv").config();
 
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
         }, 
         // {
         //   test: /.s?css$/,
-        //   use: ExtractTextWebpack.extract({
+        //   use: ExtractTextPlugin.extract({
         //     fallback: 'style-loader',
         //     use: [
         //       {
@@ -76,11 +76,11 @@ module.exports = {
         }
       ]
     },
-    // plugins: [
-    //   new MiniCssExtractPlugin({
-    //     filename: 'css/[name].css',  // /dist/css/client.cssに出力
-    //   })
-    // ], 
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].css',  // /dist/css/client.cssに出力
+      })
+    ], 
     resolve: {
         extensions: ['.ts', '.js', '.tsx']
     },
