@@ -28,52 +28,23 @@ module.exports = {
             },
           ]
         }, 
-        // {
-        //   test: /.s?css$/,
-        //   use: ExtractTextPlugin.extract({
-        //     fallback: 'style-loader',
-        //     use: [
-        //       {
-        //         loader: 'css-loader',
-        //         options: {
-        //           sourceMap: true,
-        //           importLoader: true
-        //         }
-        //       },
-        //       {
-        //         loader: 'postcss-loader',
-        //       },
-        //       {
-        //         loader: 'sass-loader'
-        //       }
-        //     ]
-        //   })
-        // }
-        // {
-        //   test: /\.scss$/, 
-        //   use: [
-        //     'style-loader', 
-        //     'css-loader', 
-        //     'sass-loader'
-        //   ]
-        // }
         { 
-          test: /.scss?$/,
+          test: /.css?$/,
           use: [
             MiniCssExtractPlugin.loader, // これをしてpluginのところにMiniCssExtractPluginを書くとCSSが追加される
             // "style-loader",
             "css-loader",
-            {
-              loader: 'sass-loader',
-            }
+          //   {
+          //     loader: 'sass-loader',
+          //   }
           ],
-          exclude: /node_modules/,
+          // exclude: /node_modules/,
         }
       ]
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'css/style.css',  // /dist/css/client.cssに出力
+        filename: '[contenthash].css',  // 
       })
     ], 
     resolve: {

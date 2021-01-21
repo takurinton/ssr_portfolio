@@ -19,13 +19,6 @@ import { getParams } from '../utils/getParams';
 const app = express();
 
 app.use(express.static('dist'));
-// app.use(sassMiddleware({
-//   src: path.join(__dirname, 'src/styles'),
-//   dist: path.join(__dirname, 'dist/styles'),
-//   indentedSyntax: false,
-//   sourceMap: true
-// }));
-
 app.listen(3000);
 
 
@@ -66,14 +59,6 @@ app.get('/about', (req, res) => {
 
   res.send(renderd);
 });
-
-// const Posts: React.FC<any> = (props) => <h1>{ props }</h1>
-
-// app.get('/post', async (req, res) => {
-//   const posts = await getPosts()
-//   const html: string = renderToString(<Posts {...posts} />)
-//   await res.send(html)
-// })
 
 app.get('/post/:id', async (req, res) => {
   const id = req.params.id;

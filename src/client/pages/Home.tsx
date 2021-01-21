@@ -5,8 +5,6 @@ import { Gopher } from '../components/utils/Character/Gopher';
 import { PostsProps, PostProps } from '../../types/types';
 import { Pagination } from '../../utils/Pagenation';
 
-// const css = require('../../../src/styles/style/blog.scss');
-
 const Post: React.FC<PostProps> = (props: PostProps) => {
     return (
         <div>
