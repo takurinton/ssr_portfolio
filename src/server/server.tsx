@@ -23,7 +23,7 @@ app.listen(3000);
 
 app.get('/', async (req, res) => {
   const page: string = req.query.page === undefined ? '' : req.query.page;
-  const category: string = req.query.category === undefined ? '' : req.query.category;
+  const category: string = req.query.category === undefined ? '' : encodeURI(req.query.category);
   const qs: string = getParams(page, category);
   const posts = await getPosts(qs);
   const renderd = renderToStaticMarkup(

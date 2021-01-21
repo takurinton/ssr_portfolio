@@ -10,7 +10,9 @@ import { Pagination } from '../../utils/Pagenation';
 const Post: React.FC<PostProps> = (props: PostProps) => {
     return (
         <div>
-            <p><a href={`/post/${props.id}`}>{props.title}</a></p>
+            <h1><a href={`/post/${props.id}`}>{props.title}</a></h1>
+            <p><a href={`/?category=${props.category}`}>{props.category}</a></p>
+            <br/>
         </div>
     )
 }
