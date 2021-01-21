@@ -1,6 +1,8 @@
 import express from 'express';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
+const sassMiddleware = require('node-sass-middleware');
+const path = require('path');
 
 import { Home } from '../client/pages/Home';
 import { About } from '../client/pages/About';
@@ -17,6 +19,12 @@ import { getParams } from '../utils/getParams';
 const app = express();
 
 app.use(express.static('dist'));
+// app.use(sassMiddleware({
+//   src: path.join(__dirname, 'src/styles'),
+//   dist: path.join(__dirname, 'dist/styles'),
+//   indentedSyntax: false,
+//   sourceMap: true
+// }));
 
 app.listen(3000);
 

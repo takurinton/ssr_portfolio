@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // require("dotenv").config();
 
 module.exports = {
@@ -58,27 +58,22 @@ module.exports = {
         //   ]
         // }
         { 
-          test: /\.(sa|sc|c)ss$/,
-          exclude: /node_modules/,
+          test: /.scss?$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            MiniCssExtractPlugin.loader, // これをしてpluginのところにMiniCssExtractPluginを書くとCSSが追加される
+            // "style-loader",
+            "css-loader",
             {
-              loader: 'css-loader',
-            },
-            {
-              loader: 'postcss-loader',
-            },
-            {
-              loader: 'sass-loader'
+              loader: 'sass-loader',
             }
-            // 'sass-loader'
-          ]
+          ],
+          exclude: /node_modules/,
         }
       ]
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'css/[name].css',  // /dist/css/client.cssに出力
+        filename: 'css/style.css',  // /dist/css/client.cssに出力
       })
     ], 
     resolve: {
