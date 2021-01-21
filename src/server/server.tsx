@@ -1,8 +1,6 @@
 import express from 'express';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-const sassMiddleware = require('node-sass-middleware');
-const path = require('path');
 
 import { Home } from '../client/pages/Home';
 import { About } from '../client/pages/About';
