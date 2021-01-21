@@ -23,7 +23,7 @@ const Posts: React.FC<PostsProps> = (props: PostsProps) => {
     const title = props.category === null ? '全ての記事' : `${props.category}の記事一覧`
 
     return (
-        <div>
+        <div style={{textAlign: 'center'}}>
             <div>
                 <Heading text={title} />
                 <div >
@@ -51,7 +51,10 @@ export const Main = () => {
 
 export const Home: React.FC<PostsProps> = (props: PostsProps) => {
     return (
-        <Posts {...props} />
+        <div>
+            <Main />
+            <Posts {...props} />
+        </div>
     )
 }
 

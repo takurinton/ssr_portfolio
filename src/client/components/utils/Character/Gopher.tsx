@@ -1,8 +1,10 @@
+import * as React from 'react';
+
 export const Gopher = () => {
     return (
         <div>
             <style>{`
-            #main {
+            #home {
                 position: relative;
                 margin: 0 auto 0;
                 height: 280px;
@@ -238,9 +240,7 @@ export const Gopher = () => {
                 }
             }
             `}</style>
-
-            <section id="main">
-
+            <section id="home">
                 <section id="body">
                     <section id="eye-left">
                         <div id="eye-black">
