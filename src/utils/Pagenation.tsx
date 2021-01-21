@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { PageButton } from '../client/components/utils/PageButton';
 
-const css = require('../styles/style/dairyreport.scss')
+// const css = require('../styles/style/dairyreport.scss')
+import '../../src/styles/style/dairyreport.scss';
 
 export const Pagination = ({ what = null, next = null, prev = null, category = null }) => {
     //@ts-ignore
@@ -9,7 +10,7 @@ export const Pagination = ({ what = null, next = null, prev = null, category = n
     //@ts-ignore
     const previousButton = prev === 'null' ? <></> : <PageButton css={css.prevButton} what={what} to={prev} category={category} char='next' />
     return ( 
-        <div className={css.pagination}>
+        <div className="pagination">
             {nextButton}
             {previousButton}
         </div>

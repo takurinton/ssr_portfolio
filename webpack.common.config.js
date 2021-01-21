@@ -1,5 +1,6 @@
 const path = require('path');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // require("dotenv").config();
 
 module.exports = {
@@ -27,34 +28,61 @@ module.exports = {
             },
           ]
         }, 
-        {
-          test: /\.(sa|sc|c)ss$/, 
+        // {
+        //   test: /.s?css$/,
+        //   use: ExtractTextWebpack.extract({
+        //     fallback: 'style-loader',
+        //     use: [
+        //       {
+        //         loader: 'css-loader',
+        //         options: {
+        //           sourceMap: true,
+        //           importLoader: true
+        //         }
+        //       },
+        //       {
+        //         loader: 'postcss-loader',
+        //       },
+        //       {
+        //         loader: 'sass-loader'
+        //       }
+        //     ]
+        //   })
+        // }
+        // {
+        //   test: /\.scss$/, 
+        //   use: [
+        //     'style-loader', 
+        //     'css-loader', 
+        //     'sass-loader'
+        //   ]
+        // }
+        { 
+          test: /\.(sa|sc|c)ss$/,
+          exclude: /node_modules/,
           use: [
-            'style-loader', 
-            'css-loader', 
-            'sass-loader'
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'postcss-loader',
+            },
+            {
+              loader: 'sass-loader'
+            }
+            // 'sass-loader'
           ]
         }
-      //   { 
-      //     test: /\.(sa|sc|c)ss$/,
-      //     exclude: /node_modules/,
-      //     use: [
-      //       MiniCssExtractPlugin.loader,
-      //       {
-      //         loader: 'css-loader',
-      //       },
-      //       'sass-loader'
-      //     ]
-      //   }
       ]
     },
     // plugins: [
     //   new MiniCssExtractPlugin({
-    //     filename: 'css/style.css',  // /dist/css/sample.cssに出力
+    //     filename: 'css/[name].css',  // /dist/css/client.cssに出力
     //   })
     // ], 
     resolve: {
-        extensions: ['.ts', '.js', '.tsx', '.css', '.scss']
+        extensions: ['.ts', '.js', '.tsx']
     },
     output: {
         filename: '[name].js',

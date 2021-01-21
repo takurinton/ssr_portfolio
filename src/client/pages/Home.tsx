@@ -5,7 +5,8 @@ import { Gopher } from '../components/utils/Character/Gopher';
 import { PostsProps, PostProps } from '../../types/types';
 import { Pagination } from '../../utils/Pagenation';
 
-const css = require('../../styles/style/blog.scss');
+// const css = require('../../../src/styles/style/blog.scss');
+import '../../../src/styles/style/blog.scss';
 
 const Post: React.FC<PostProps> = (props: PostProps) => {
     return (
@@ -22,10 +23,10 @@ const Posts: React.FC<PostsProps> = (props: PostsProps) => {
 
     return (
         <div>
-            <div className={css.main}>
+            <div className="main">
                 <Heading text={title} />
-                <div className={css.home} >
-                    <div className={css.items}>
+                <div className="home" >
+                    <div className="items">
                     {
                         props.results.map(post => ( <Post {...post} />) )
                     }
