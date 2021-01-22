@@ -5,6 +5,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { Home } from '../client/pages/Home';
 import { About } from '../client/pages/About';
 import { Post } from '../client/pages/Post';
+import { Me } from '../client/pages/Me';
 
 import Html from '../client/base/Html';
 
@@ -72,6 +73,24 @@ app.get('/post/:id', async (req, res) => {
         discription: `${post.title} | たくりんとんのブログ`, 
         image: `https://takurinton.com${post.contents_image_url}`,
         props: post,
+      })
+    )
+  );
+  res.setHeader('Content-Type', 'text/html')
+  const renderd = '<!DOCTYPE html>' + _renderd;
+  res.send(renderd);
+})
+
+app.get('/me', async (req, res) => {
+  const _renderd = renderToStaticMarkup(
+    React.createElement(
+      Html({
+        title: `たくりんとん | me`,
+        slug: `http://localhost:3000/`,
+        children: Me,
+        discription: `たくりんとん | me`, 
+        image: undefined,
+        props: null,
       })
     )
   );

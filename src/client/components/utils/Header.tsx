@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { css } from "linaria";
-import { styled } from '@linaria/react';
 import { h4, h5, pink_kawaii, theme_text, thick } from '../../../styles/theme';
 
 const header = css`
-    padding: 20px 20% 0;
+    padding: 0 20% 10px;
     position: relative;
     vertical-align: middle;
     height: 50px;
@@ -31,6 +30,10 @@ const page = css`
         text-decoration: none;
         font-size: ${h5};
         font-weight: ${thick};
+    }
+
+    a:hover {
+        color: ${pink_kawaii};
     }
 `;
 

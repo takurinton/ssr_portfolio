@@ -3,15 +3,8 @@ import ReactDOM from 'react-dom';
 import { Home } from '../pages/Home';
 import { About } from '../pages/About';
 import { Post } from '../pages/Post';
+import { Me } from '../pages/Me';
 import { getPost, getPosts } from '../../utils/_api/blog/post';
-
-// const Routes = () => (
-//     <Router>
-//       <Route exact path='/' component={Home}></Route>
-//       <Route path='/about' component={About}></Route>
-//       <Route path='/post/:id' component={Post}></Route>
-//     </Router>
-// )
 
 const Routes = async () => {
   const pathList = window.location.pathname.split('/');
@@ -28,6 +21,11 @@ const Routes = async () => {
   else if (pathList[1] == 'about') {
     ReactDOM.hydrate(
       <About />, document.getElementById('main')
+    );
+  }
+  else if (pathList[1] == 'me') {
+    ReactDOM.hydrate(
+      <Me />, document.getElementById('main')
     );
   }
   else if (pathList[1] == 'post') {
