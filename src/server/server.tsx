@@ -37,6 +37,7 @@ app.get('/', async (req, res) => {
       })
     )
   );
+  res.setHeader('Content-Type', 'text/html')
   const renderd = '<!DOCTYPE html>' + _renderd;
   res.send(renderd);
 });
@@ -54,6 +55,7 @@ app.get('/about', (req, res) => {
       })
     )
   );
+  res.setHeader('Content-Type', 'text/html')
   const renderd = '<!DOCTYPE html>' + _renderd;
   res.send(renderd);
 });
@@ -73,6 +75,7 @@ app.get('/post/:id', async (req, res) => {
       })
     )
   );
+  res.setHeader('Content-Type', 'text/html')
   const renderd = '<!DOCTYPE html>' + _renderd;
   res.send(renderd);
 })

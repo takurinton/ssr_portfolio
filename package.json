@@ -9,7 +9,7 @@
     "build:vercel": "VERCEL=true npm run build:client && npm run build:server:vercel", 
     "build:client": "webpack --config webpack.client.config.js --mode development",
     "build:server": "rm -rf ./assets/ && babel src --config-file ./babel.config.js  -x '.ts,.tsx' -d assets",
-    "build:server:vercel": "rm -rf ./api/ && babel src --config-file ./babel.config.js  -x '.ts,.tsx' -d api", 
+    "build:server:vercel": "babel src --config-file ./babel.config.js  -x '.ts,.tsx' -d api", 
     "clear": "rm -rf ./dist/ && rm -rf ./assets/"
   },
   "dependencies": {
