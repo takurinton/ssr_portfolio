@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Heading } from '../components/utils/Heading';
 import { Gopher } from '../components/utils/Character/Gopher';
 import { Header } from '../components/utils/Header';
+import { Layout } from '../base/Layout';
 
 import { PostsProps, PostProps } from '../../types/types';
 import { Pagination } from '../../utils/Pagenation';
@@ -48,13 +49,12 @@ export const Main = () => {
     )
 }
 
-export const Home: React.FC<PostsProps> = (props: PostsProps) => {
+export const Home: React.FC<PostsProps> = Layout((props: PostsProps) => {
     return (
         <div>
-            <Header />
             <Main />
             <Posts {...props} />
-        </div>
+        </div> 
     )
-}
+});
 

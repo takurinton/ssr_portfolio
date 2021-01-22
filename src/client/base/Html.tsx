@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Header } from '../components/utils/Header';
 
 const localhost = 'http://localhost:3000'
 
@@ -25,6 +24,20 @@ const Head = (props) => {
             <link rel="apple-touch-icon" href={"https://www.takurinton.com/me.jpeg"} />
             <link rel="stylesheet" type="text/css" href={`${localhost}/client.css`} />
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />
+
+            <style>
+            {`
+                body {
+                    padding: 0; 
+                    margin: 0;
+                    margin-bottom: 50px;
+                    font-family: Helvetica Neue, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans, Meiryo, sans-serif;
+                }
+                @media (max-width: 414px) {
+                    font-size: 80%;
+                }
+            `}
+            </style>
       </head>
     )
 }
@@ -49,7 +62,6 @@ const Html = (props: Props) => {
             <Head {...props} />
             <body>
                 <div id="main">
-                    <Header />
                     <props.children {...props.props} />
                 </div>
                 <script async defer src={`${localhost}/client.js`} />
