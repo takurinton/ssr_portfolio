@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Home } from '../pages/Home';
 import { About } from '../pages/About';
 import { Post } from '../pages/Post';
-import { getPost, getPosts } from '../../utils/api/blog/post';
+import { getPost, getPosts } from '../../utils/_api/blog/post';
 
 // const Routes = () => (
 //     <Router>

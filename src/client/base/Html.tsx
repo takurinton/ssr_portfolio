@@ -25,6 +25,8 @@ const Head = (props) => {
             <link rel="stylesheet" type="text/css" href={`${localhost}/client.css`} />
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />
             <meta name="viewport" content="width=device-width,initial-scale=1" />
+            <meta name="robots" content="noindex"/>
+            <meta name="AdsBot-Google" content="noindex"/>
             <style>
             {`
                 body {

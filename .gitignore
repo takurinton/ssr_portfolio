@@ -122,3 +122,5 @@ dist
 .vercel
 
 assets/
+api/
+.linaria-cache/
