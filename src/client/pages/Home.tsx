@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { Heading } from '../components/utils/Heading';
 import { Gopher } from '../components/utils/Character/Gopher';
+import { Header } from '../components/utils/Header';
 
 import { PostsProps, PostProps } from '../../types/types';
 import { Pagination } from '../../utils/Pagenation';
 
 const Post: React.FC<PostProps> = (props: PostProps) => {
     return (
-        <div>
+        <div key={props.id}>
             <h1><a href={`/post/${props.id}`}>{props.title}</a></h1>
             <p><a href={`/?category=${props.category}`}>{props.category}</a></p>
             <br/>
@@ -50,6 +51,7 @@ export const Main = () => {
 export const Home: React.FC<PostsProps> = (props: PostsProps) => {
     return (
         <div>
+            <Header />
             <Main />
             <Posts {...props} />
         </div>

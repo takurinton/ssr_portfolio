@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // require("dotenv").config();
 
 module.exports = {
-    // mode: process.env.NODE_ENV,
+    mode: process.env.NODE_ENV,
     mode: 'development', 
     // target: 'web', 
     entry: {
@@ -39,7 +39,7 @@ module.exports = {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[contenthash].css',
+        filename: '[name].css',
       })
     ], 
     resolve: {

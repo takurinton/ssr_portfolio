@@ -4,7 +4,7 @@ import { PostProps } from '../../types/types'
 export const Post: React.FC<PostProps> = (props) => {
     return (
         <div>
-            <h1>post</h1>
+            <h1>{props.title}</h1>
             <p>{ props.contents }</p>
         </div>
     )

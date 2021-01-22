@@ -23,6 +23,7 @@ const Head = (props) => {
             <meta name="twitter:image" content={props.image} />
             <link rel="shortcut icon" href={"https://www.takurinton.com/me.jpeg"} />
             <link rel="apple-touch-icon" href={"https://www.takurinton.com/me.jpeg"} />
+            <link rel="stylesheet" type="text/css" href={`${localhost}/client.css`} />
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />
       </head>
     )
@@ -47,9 +48,10 @@ const Html = (props: Props) => {
         <html lang="ja">
             <Head {...props} />
             <body>
-                <Header />
-                
-                <div id="main"><props.children {...props.props} /></div>
+                <div id="main">
+                    <Header />
+                    <props.children {...props.props} />
+                </div>
                 <script async defer src={`${localhost}/client.js`} />
             </body>
         </html>
