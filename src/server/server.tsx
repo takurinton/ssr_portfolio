@@ -25,10 +25,10 @@ app.get('/', async (req, res) => {
   const category: string = req.query.category === undefined ? '' : encodeURI(req.query.category);
   const qs: string = getParams(page, category);
   const posts = await getPosts(qs);
-  const renderd = renderToStaticMarkup(
+  const _renderd = renderToStaticMarkup(
     React.createElement(
       Html({
-        title: 'たくりんとん | home',
+        title: 'たくりんとん',
         slug: `http://localhost:3000/`,
         children: Home,
         discription: undefined, 
@@ -37,12 +37,12 @@ app.get('/', async (req, res) => {
       })
     )
   );
-
+  const renderd = '<!DOCTYPE html>' + _renderd;
   res.send(renderd);
 });
 
 app.get('/about', (req, res) => {
-  const renderd = renderToStaticMarkup(
+  const _renderd = renderToStaticMarkup(
     React.createElement(
       Html({
         title: 'たくりんとん | about',
@@ -54,14 +54,14 @@ app.get('/about', (req, res) => {
       })
     )
   );
-
+  const renderd = '<!DOCTYPE html>' + _renderd;
   res.send(renderd);
 });
 
 app.get('/post/:id', async (req, res) => {
   const id = req.params.id;
   const post: PostProps = await getPost(id);
-  const renderd = renderToStaticMarkup(
+  const _renderd = renderToStaticMarkup(
     React.createElement(
       Html({
         title: `${post.title} | たくりんとんのブログ`,
@@ -73,7 +73,7 @@ app.get('/post/:id', async (req, res) => {
       })
     )
   );
-
+  const renderd = '<!DOCTYPE html>' + _renderd;
   res.send(renderd);
 })
 

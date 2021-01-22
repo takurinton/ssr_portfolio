@@ -4,11 +4,11 @@ const localhost = 'http://localhost:3000'
 
 const Head = (props) => {
     if (props.description == undefined) props.description = 'たくりんとんのポートフォリオです';
-    if (props.image == undefined) props.image = 'https://www.takurinton.com/me.jpe';
+    if (props.image == undefined) props.image = 'https://www.takurinton.com/me.jpeg';
     return (
         <head>
             <title>{props.title}</title>
-            <meta name="description" content={props.discription} />
+            <meta name="description" content={props.description} />
             <meta property="og:title" content={props.title} />
             <meta property="og:description" content={props.description} />
             <meta property="og:type" content="blog" />
@@ -24,7 +24,7 @@ const Head = (props) => {
             <link rel="apple-touch-icon" href={"https://www.takurinton.com/me.jpeg"} />
             <link rel="stylesheet" type="text/css" href={`${localhost}/client.css`} />
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />
-
+            <meta name="viewport" content="width=device-width,initial-scale=1" />
             <style>
             {`
                 body {
