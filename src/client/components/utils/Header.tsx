@@ -19,6 +19,9 @@ const domain = css`
         font-size: ${h4};
         font-weight: ${thick};
     }
+    a:hover {
+        color: ${pink_kawaii};
+    }
 `;
 
 const page = css`
