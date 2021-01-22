@@ -82,6 +82,7 @@ app.get('/post/:id', async (req, res) => {
 })
 
 app.get('/me', async (req, res) => {
+  const lang = req.query.lang === 'en' ? 'en' : 'ja';
   const _renderd = renderToStaticMarkup(
     React.createElement(
       Html({
@@ -90,7 +91,7 @@ app.get('/me', async (req, res) => {
         children: Me,
         discription: `たくりんとん | me`, 
         image: undefined,
-        props: null,
+        props: {lang: lang},
       })
     )
   );

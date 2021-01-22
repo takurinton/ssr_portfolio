@@ -1,4 +1,5 @@
 import * as React from 'react';
+// import { useState, useEffect } from 'react';
 import { css } from "linaria";
 import { h5 } from '../../styles/theme';
 
@@ -86,9 +87,10 @@ const main = css`
 
 `
 
-export const Me: React.FC = Layout(() => {
+export const Me: React.FC = Layout((props: { lang: string }) => {
   const r: marked.Renderer = markdownStyle()
-  const md: string = marked(wiki_ja, {renderer: r})
+  const lang = props.lang === 'en' ? wiki_en : wiki_ja;
+  const md: string = marked(lang, {renderer: r})
 
   return (
     <div>
@@ -98,7 +100,7 @@ export const Me: React.FC = Layout(() => {
           marginTop: '50px', 
         }}>
         <Heading text="me" />
-      </div>
+        </div>
        <div className={main} dangerouslySetInnerHTML={{ __html: md }} />
     </div>
   )
