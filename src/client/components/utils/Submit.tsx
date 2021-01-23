@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { css } from 'linaria';
-import { theme_main, h5 } from '../../../styles/theme';
+import { theme_main, h5, pink_kawaii } from '../../../styles/theme';
 
 const submit = css`
     padding: 10px auto;
@@ -13,6 +13,10 @@ const submit = css`
     font-size: ${h5}; 
     border: none;
     border-radius: 5px;
+
+    &: hover {
+        background: ${pink_kawaii}
+    }
 `
 
 

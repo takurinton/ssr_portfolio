@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { css } from 'linaria';
-import { theme_main } from '../../../styles/theme';
+import { pink_kawaii, h4, h5 } from '../../../styles/theme';
 
 import { Submit } from '../utils/Submit'
 import { Heading } from '../utils/Heading'
@@ -16,19 +16,19 @@ const form = css`
 
 const input = css`
     margin: 20px 0;
-    border: none; 
-    border-bottom: 2px solid ${theme_main};
+    border: 2px solid ${pink_kawaii};
+    border-radius: 2px;
     font-size: $h5; 
-    height: $h4;
+    height: ${h4};
     width: 80%;
 `;
 
 const textarea = css`
     margin: 20px 0;
-    border: none; 
-    border-bottom: 2px solid ${theme_main};
-    font-size: $h5; 
-    height: $h4;
+    border-radius: 2px;
+    border: 2px solid ${pink_kawaii};
+    font-size: ${h5}; 
+    height: ${h4};
     width: 100%;
 `;
 

@@ -6,7 +6,7 @@ import { Layout } from '../base/Layout';
 import { css } from 'linaria';
 import { PostsProps, PostProps } from '../../types/types';
 import { Pagination } from '../../utils/Pagenation';
-import { pink_kawaii } from '../../styles/theme';
+import { pink_kawaii, theme_main } from '../../styles/theme';
 
 
 const title = css`
@@ -19,11 +19,25 @@ const title = css`
     }
 `
 
+const category = css`
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+    background: #222222;
+    border-radius: 3px;
+    text-decoration: none;
+
+    &: hover { 
+        background: ${pink_kawaii}
+    }
+`
+
 const Post: React.FC<PostProps> = (props: PostProps) => {
     return (
         <div key={props.id}>
             <h1><a className={title} href={`/post/${props.id}`}>{props.title}</a></h1>
-            <p><a href={`/?category=${props.category}`}>{props.category}</a></p>
+            <p><a href={`/?category=${props.category}`} className={category}>{props.category}</a></p>
             <br/>
         </div>
     )
