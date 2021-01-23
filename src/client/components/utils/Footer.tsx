@@ -6,8 +6,8 @@ const footer = css`
     margin: 100px auto;
     text-align: center;
     position: relative;
-    height: 50px;
     background: white;
+    height: 50px;
 `;
 
 const me = css`
@@ -19,7 +19,7 @@ export const Footer = () => {
     return (
         <div className={footer}>
             <p className={me}>
-                takurinton
+                {/* takurinton */}
             </p>
         </div>
     )

@@ -18,7 +18,7 @@ const category = css`
     text-align: center;
     font-size: 1.2rem;
     color: white;
-    background: #222222;
+    background: #696969;
     border-radius: 3px;
     text-decoration: none;
 
@@ -45,8 +45,9 @@ const box = css`
     }
 `;
 
-const post = css`
-
+const pubdate = css`
+    font-size: ${p};
+    color: #222222;
 `;
 
 export const Post: React.FC<PostProps> = (props: PostProps) => {
@@ -54,11 +55,11 @@ export const Post: React.FC<PostProps> = (props: PostProps) => {
     const image = props.contents_image_url === '' ? 'https://www.takurinton.com/me.jpeg' : 'https://takurinton.com' + props.contents_image_url;
     return (
         <div key={props.id} className={box}>
-            <div className={post}>
+            <div>
                 <a href={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
                     <h1 className={title}>{props.title}</h1>
                     <img src={image} alt={props.title} /> <br /> 
-                    <p>{pubDate}</p>
+                    <p className={pubdate}>{pubDate}</p>
                 </a>
             </div>
             <p><a href={`/?category=${props.category}`} className={category}>{props.category}</a></p>
