@@ -3,7 +3,7 @@ import { css } from "linaria";
 import { h4, h5, pink_kawaii, theme_text, thick } from '../../../styles/theme';
 
 const footer = css`
-    margin: 50px auto 0;
+    margin: 100px auto;
     text-align: center;
     position: relative;
     height: 50px;

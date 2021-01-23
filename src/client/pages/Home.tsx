@@ -3,7 +3,7 @@ import { Layout } from '../base/Layout';
 import { Main } from '../components/pages/home/Main';
 import { Posts } from '../components/pages/home/Posts';
 
-import { PostsProps, PostProps } from '../../types/types';
+import { PostsProps } from '../../types/types';
 
 export const Home: React.FC<PostsProps> = Layout((props: PostsProps) => {
     return (
