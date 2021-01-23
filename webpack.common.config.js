@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // require("dotenv").config();
 
 module.exports = {
-    // mode: process.env.NODE_ENV,
+    mode: process.env.NODE_ENV,
     mode: 'development', 
     // target: 'web', 
     entry: {
@@ -28,23 +28,18 @@ module.exports = {
             },
           ]
         }, 
-        { 
-          test: /.css?$/,
+        {
+          test: /\.css$/,
           use: [
-            MiniCssExtractPlugin.loader, // これをしてpluginのところにMiniCssExtractPluginを書くとCSSが追加される
-            // "style-loader",
+            MiniCssExtractPlugin.loader, 
             "css-loader",
-          //   {
-          //     loader: 'sass-loader',
-          //   }
           ],
-          // exclude: /node_modules/,
-        }
+        },
       ]
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[contenthash].css',  // 
+        filename: '[name].css',
       })
     ], 
     resolve: {

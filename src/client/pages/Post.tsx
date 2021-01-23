@@ -1,11 +1,33 @@
 import * as React from 'react';
-import { PostProps } from '../../types/types'
+import { Layout } from '../base/Layout';
+import { Comments } from '../components/pages/post/Comments'
+import { css } from 'linaria';
+import { h5 } from '../../styles/theme';
+import { Heading } from '../components/utils/Heading';
+import { PostProps } from '../../types/types';
+import { blog } from '../../styles/markdown';
 
-export const Post: React.FC<PostProps> = (props) => {
-    return (
-        <div>
-            <h1>post</h1>
-            <p>{ props.contents }</p>
-        </div>
-    )
-}
+const detail = css`
+    text-align: center; 
+    margin: 50px; 
+
+    p {
+        font-size: ${h5};
+        color: $theme_text;
+        font-weight: $thick;
+    }
+`
+
+export const Post: React.FC<PostProps> = Layout((props: PostProps) => {
+  return (
+    <div>
+      <div className={detail}>
+        <Heading text={props.title} />
+        <p>{props.pub_date}</p>
+      </div>
+       <div className={blog} dangerouslySetInnerHTML={{ __html: props.contents }} />
+
+       <Comments postId={props.id} comment={props.comment} />
+    </div>
+  )
+});

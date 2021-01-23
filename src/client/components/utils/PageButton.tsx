@@ -8,8 +8,10 @@ export const PageButton = ({ what = '', css = '', to = '', category = '', char =
     const qs = getParams(to, category)
 
     return (
-        <a href={`/${qs}`}>
-            <a className={css}>{char}</a>
-        </a>
+        <div>
+            <a href={`/${qs}`}>
+                <p className={css}>{char}</p>
+            </a>
+        </div>
     )
 }

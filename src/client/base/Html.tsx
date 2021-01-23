@@ -4,11 +4,11 @@ const localhost = 'http://localhost:3000'
 
 const Head = (props) => {
     if (props.description == undefined) props.description = 'たくりんとんのポートフォリオです';
-    if (props.image == undefined) props.image = 'https://www.takurinton.com/me.jpe';
+    if (props.image == undefined) props.image = 'https://www.takurinton.com/me.jpeg';
     return (
         <head>
             <title>{props.title}</title>
-            <meta name="description" content={props.discription} />
+            <meta name="description" content={props.description} />
             <meta property="og:title" content={props.title} />
             <meta property="og:description" content={props.description} />
             <meta property="og:type" content="blog" />
@@ -22,7 +22,22 @@ const Head = (props) => {
             <meta name="twitter:image" content={props.image} />
             <link rel="shortcut icon" href={"https://www.takurinton.com/me.jpeg"} />
             <link rel="apple-touch-icon" href={"https://www.takurinton.com/me.jpeg"} />
+            <link rel="stylesheet" type="text/css" href={`${localhost}/client.css`} />
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />
+            <meta name="viewport" content="width=device-width,initial-scale=1" />
+            <style>
+            {`
+                body {
+                    padding: 0; 
+                    margin: 0;
+                    margin-bottom: 50px;
+                    font-family: Helvetica Neue, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans, Meiryo, sans-serif;
+                }
+                @media (max-width: 414px) {
+                    font-size: 80%;
+                }
+            `}
+            </style>
       </head>
     )
 }
@@ -46,11 +61,10 @@ const Html = (props: Props) => {
         <html lang="ja">
             <Head {...props} />
             <body>
-                <h1>headerがここにはいる</h1>
-                <p><a href="/">トップ</a></p>
-                <p><a href="/about">about</a></p>
-
-                <div id="main"><props.children {...props.props} /></div>
+                <div id="main">
+                    <props.children {...props.props} />
+                </div>
+                <script id="json" type="text/plain" data-json={ JSON.stringify(props.props) }></script>
                 <script async defer src={`${localhost}/client.js`} />
             </body>
         </html>
