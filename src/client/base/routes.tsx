@@ -19,7 +19,7 @@ const Routes = async () => {
   if (pathList[1] == '') {
     await fetch('/')
     .then(() => {
-      const json: PostsProps = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));
+      const json: PostsProps = JSON.parse(document.getElementById('json').getAttribute('data-json'));
       ReactDOM.hydrate(
         <Home {...json} />, document.getElementById('main')
       )
@@ -42,7 +42,7 @@ const Routes = async () => {
     // client side routingでfetchをするのはよくないのでサーバサイドに任せる方がいい
     await fetch(`/post/${id}`)
     .then(() => {
-      const json: PostsProps = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));
+      const json: PostsProps = JSON.parse(document.getElementById('json').getAttribute('data-json'));
       ReactDOM.hydrate(
         <Post {...json} />, document.getElementById('main')
       );
