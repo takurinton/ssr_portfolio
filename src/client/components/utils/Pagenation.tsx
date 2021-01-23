@@ -15,7 +15,7 @@ const pagination = css`
 const pButton = css`  
     position: absolute;
     padding: 10px auto;
-    background: #222222;
+    background: ${theme_main};
     text-align: center;
     color: white; 
     width: 100px;
@@ -32,7 +32,7 @@ const pButton = css`
 const nButton = css`
     position: absolute;
     padding: 10px auto;
-    background: #222222;
+    background: ${theme_main};
     text-align: center;
     color: white; 
     width: 100px;
