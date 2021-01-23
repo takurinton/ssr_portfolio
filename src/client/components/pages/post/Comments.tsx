@@ -7,7 +7,6 @@ import { CommentProps } from '../../../../types/types';
 import { CommentForm } from './CommentForm';
 import { h4, h5, pink_kawaii } from '../../../../styles/theme';
 
-
 const form = css`
     margin: 0 auto;
     width: 50%;
@@ -15,7 +14,6 @@ const form = css`
         width: 85%;
     }
 `;
-
 
 export const Comments: React.FC = (props: { postId: number, comment: CommentProps[] }) => {
     // const {

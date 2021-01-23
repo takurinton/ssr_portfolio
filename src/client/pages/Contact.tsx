@@ -3,21 +3,32 @@ import { useState } from 'react'
 // import { useContact } from '../../hooks/useContact'
 
 import { Layout } from '../base/Layout';
-import { ContactForm } from '../components/parts/ContactForm';
+import { ContactForm } from '../components/pages/contact/ContactForm';
 import Modal from 'react-modal'
 
 import { css } from 'linaria';
+import { p, pink_kawaii } from '../../styles/theme';
 
 const main = css`
     margin: 50px auto 0;
     width: 50%;
     text-align: center;
+    input, textarea {
+        margin: 10px 0;
+        padding: 1px;
+        border: 2px solid ${pink_kawaii};
+        width: 100%;
+        border-radius: 5px;
+        font-size: ${p}
+    }
+    textarea {
+        height: 30vh;
+    }
 
     @media (max-width: 800px) {
         width: 80%;
     }
 `
-
 
 export const Contact: React.FC = Layout(() => {
     const [modal, setModal] = useState<boolean>(false)

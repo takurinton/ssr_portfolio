@@ -7,7 +7,8 @@ import { h4, h5, pink_kawaii } from '../../../../styles/theme';
 
 const input = css`
     margin: 20px 0;
-    border: 2px solid ${pink_kawaii};
+    border: none;
+    border-bottom: 2px solid ${pink_kawaii};
     border-radius: 2px;
     font-size: ${h5}; 
     height: ${h4};
@@ -16,8 +17,8 @@ const input = css`
 
 const textarea = css`
     margin: 20px 0;
-    border-radius: 2px;
-    border: 2px solid ${pink_kawaii};
+    border: none; 
+    border-bottom: 2px solid ${pink_kawaii};
     font-size: ${h5}; 
     height: ${h4};
     width: 100%;
@@ -28,7 +29,7 @@ export const CommentForm: React.FC = (value: {state: any, onChange: any, onSubmi
         <form onSubmit={value.onSubmit}>
             <h1>コメント</h1>
             <input type="text" onChange={value.onChange} name="name" value={value.state.name} required={true} placeholder="お名前" className={input} />
-            <textarea onChange={value.onChange} name="contents" value={value.state.contents} required={true} placeholder="コメントを入力" className={input} />
+            <textarea onChange={value.onChange} name="contents" value={value.state.contents} required={true} placeholder="コメントを入力" className={textarea} />
             <Submit />
         </form>
     )
