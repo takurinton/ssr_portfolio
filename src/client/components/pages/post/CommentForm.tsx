@@ -23,7 +23,7 @@ const textarea = css`
     width: 100%;
 `;
 
-export const CommentForm = (value: {state: any, onChange: any, onSubmit: any }) => {
+export const CommentForm: React.FC = (value: {state: any, onChange: any, onSubmit: any }) => {
     return (
         <form onSubmit={value.onSubmit}>
             <h1>コメント</h1>
