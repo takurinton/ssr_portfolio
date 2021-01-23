@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Layout } from '../base/Layout';
+import { Comments } from '../components/pages/post/Comments'
 import { css } from 'linaria';
 import { h5 } from '../../styles/theme';
 import { Heading } from '../components/utils/Heading';
@@ -26,7 +27,7 @@ export const Post: React.FC<PostProps> = Layout((props: PostProps) => {
       </div>
        <div className={blog} dangerouslySetInnerHTML={{ __html: props.contents }} />
 
-       {/* <Comment postId={props.props.id} comment={props.props.comment} /> */}
+       <Comments postId={props.id} comment={props.comment} />
     </div>
   )
 });
