@@ -49,9 +49,9 @@ const nButton = css`
 
 export const Pagination = ({ what = null, next = null, prev = null, category = null }) => {
     //@ts-ignore
-    const nextButton = next === null ? <></> : <PageButton what={what} css={nButton} to={next} category={category} char='prev' />
+    const nextButton = next === 'null' ? <></> : <PageButton what={what} css={nButton} to={next} category={category} char='prev' />
     //@ts-ignore
-    const previousButton = prev === null ? <></> : <PageButton what={what} css={pButton} to={prev} category={category} char='next' />
+    const previousButton = prev === 'null' ? <></> : <PageButton what={what} css={pButton} to={prev} category={category} char='next' />
     return ( 
         <div className={pagination}>
             {nextButton}
