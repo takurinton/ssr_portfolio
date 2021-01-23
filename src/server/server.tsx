@@ -6,6 +6,7 @@ import { Home } from '../client/pages/Home';
 import { About } from '../client/pages/About';
 import { Post } from '../client/pages/Post';
 import { Me } from '../client/pages/Me';
+import { Contact } from '../client/pages/Contact';
 
 import Html from '../client/base/Html';
 
@@ -17,6 +18,7 @@ import { getParams } from '../utils/getParams';
 
 import { syntaxHighlight } from '../styles/markdown/syntaxHighlight';
 import marked from 'marked';
+import { Memo } from '../client/pages/Memo';
 const { markdownStyle } = require('../styles/markdown/dairyreport');
 
 const app = express();
@@ -119,6 +121,42 @@ app.get('/me', async (req, res) => {
   const renderd = '<!DOCTYPE html>' + _renderd;
   res.send(renderd);
 })
+
+app.get('/memo', (req, res) => {
+  const _renderd = renderToStaticMarkup(
+    React.createElement(
+      Html({
+        title: 'たくりんとん | memo',
+        slug: `http://localhost:3000/`,
+        children: Memo,
+        discription: 'たくりんとん | memo', 
+        image: undefined, 
+        props: {},
+      })
+    )
+  );
+  res.setHeader('Content-Type', 'text/html')
+  const renderd = '<!DOCTYPE html>' + _renderd;
+  res.send(renderd);
+});
+
+app.get('/contact', (req, res) => {
+  const _renderd = renderToStaticMarkup(
+    React.createElement(
+      Html({
+        title: 'たくりんとん | contact',
+        slug: `http://localhost:3000/`,
+        children: Contact,
+        discription: 'たくりんとん | contact', 
+        image: undefined, 
+        props: {},
+      })
+    )
+  );
+  res.setHeader('Content-Type', 'text/html')
+  const renderd = '<!DOCTYPE html>' + _renderd;
+  res.send(renderd);
+});
 
 app.get('/post/fetch/:id', async (req, res) => {
   const id = req.params.id;

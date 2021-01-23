@@ -4,6 +4,8 @@ import { Home } from '../pages/Home';
 import { About } from '../pages/About';
 import { Post } from '../pages/Post';
 import { Me } from '../pages/Me';
+import { Contact } from '../pages/Contact';
+import { Memo } from '../pages/Memo';
 import { getPost, getPosts } from '../../utils/_api/blog/post';
 
 // TODO: prefetchも追加する
@@ -41,6 +43,16 @@ const Routes = async () => {
       );
     })
     .catch(err => console.error(err))
+  }
+  else if (pathList[1] == 'contact') {
+    ReactDOM.hydrate(
+      <Contact />, document.getElementById('main')
+    );
+  }
+  else if (pathList[1] == 'memo') {
+    ReactDOM.hydrate(
+      <Memo />, document.getElementById('main')
+    );
   }
   else {
     ReactDOM.hydrate(

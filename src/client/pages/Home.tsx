@@ -1,16 +1,28 @@
 import * as React from 'react';
 import { Heading } from '../components/utils/Heading';
 import { Gopher } from '../components/utils/Character/Gopher';
-import { Header } from '../components/utils/Header';
 import { Layout } from '../base/Layout';
 
+import { css } from 'linaria';
 import { PostsProps, PostProps } from '../../types/types';
 import { Pagination } from '../../utils/Pagenation';
+import { pink_kawaii } from '../../styles/theme';
+
+
+const title = css`
+    text-decoration: none; 
+    font-size: 2rem;
+    color: #222222;
+
+    &: hover {
+        color: ${pink_kawaii}
+    }
+`
 
 const Post: React.FC<PostProps> = (props: PostProps) => {
     return (
         <div key={props.id}>
-            <h1><a href={`/post/${props.id}`}>{props.title}</a></h1>
+            <h1><a className={title} href={`/post/${props.id}`}>{props.title}</a></h1>
             <p><a href={`/?category=${props.category}`}>{props.category}</a></p>
             <br/>
         </div>
