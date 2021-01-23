@@ -23,7 +23,7 @@ const { markdownStyle } = require('../styles/markdown/dairyreport');
 
 const app = express();
 
-app.use(express.static('dist'));
+app.use(express.static('api'));
 app.listen(3000);
 
 
@@ -157,9 +157,3 @@ app.get('/contact', (req, res) => {
   const renderd = '<!DOCTYPE html>' + _renderd;
   res.send(renderd);
 });
-
-app.get('/post/fetch/:id', async (req, res) => {
-  const id = req.params.id;
-  const post: PostProps = await getPost(id);
-  res.send(post);
-})

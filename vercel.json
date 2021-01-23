@@ -7,6 +7,10 @@
     ],
     "routes": [
         {
+            "src": "/client.css", 
+            "dest": "/client.css"
+        }, 
+        {
             "src": "/(.*)",
             "dest": "api/server/server.js"
         }
