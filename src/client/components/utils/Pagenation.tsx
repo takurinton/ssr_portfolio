@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PageButton } from '../client/components/utils/PageButton';
+import { PageButton } from './PageButton';
 
 // const css = require('../styles/style/dairyreport.scss')
 
