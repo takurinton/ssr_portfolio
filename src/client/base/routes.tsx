@@ -40,10 +40,11 @@ const Routes = async () => {
     const id = pathList[2];
     // not foundのバリデーション欲しい
     // client side routingでfetchをするのはよくないのでサーバサイドに任せる方がいい
-    await getPost(id)
-    .then(res => {
+    await fetch(`/post/${id}`)
+    .then(() => {
+      const json: PostsProps = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));
       ReactDOM.hydrate(
-        <Post {...res} />, document.getElementById('main')
+        <Post {...json} />, document.getElementById('main')
       );
     })
     .catch(err => console.error(err))
