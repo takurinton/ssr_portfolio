@@ -1,4 +1,5 @@
 import * as React from 'react';
+import fetch from 'node-fetch';
 import ReactDOM from 'react-dom';
 import { Home } from '../pages/Home';
 import { About } from '../pages/About';
@@ -8,18 +9,21 @@ import { Contact } from '../pages/Contact';
 import { Memo } from '../pages/Memo';
 import { getPost, getPosts } from '../../utils/_api/blog/post';
 
+import { PostsProps } from '../../types/types';
+
 // TODO: prefetchも追加する
 
 const Routes = async () => {
   const pathList = window.location.pathname.split('/');
   const params = window.location.search;
   if (pathList[1] == '') {
-    await getPosts(params)
-    .then(res => 
+    await fetch('/')
+    .then(() => {
+      const json: PostsProps = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));
       ReactDOM.hydrate(
-        <Home {...res} />, document.getElementById('main')
+        <Home {...json} />, document.getElementById('main')
       )
-    )
+    })
     .catch(err => console.error(err))
   }
   else if (pathList[1] == 'about') {

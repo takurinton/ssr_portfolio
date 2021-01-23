@@ -64,6 +64,7 @@ const Html = (props: Props) => {
                 <div id="main">
                     <props.children {...props.props} />
                 </div>
+                <script id="initial-data" type="text/plain" data-json={ JSON.stringify(props.props) }></script>
                 <script async defer src={`${localhost}/client.js`} />
             </body>
         </html>
