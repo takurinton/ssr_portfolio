@@ -6,6 +6,8 @@ import { Post } from '../pages/Post';
 import { Me } from '../pages/Me';
 import { getPost, getPosts } from '../../utils/_api/blog/post';
 
+// TODO: prefetchも追加する
+
 const Routes = async () => {
   const pathList = window.location.pathname.split('/');
   const params = window.location.search;
@@ -31,6 +33,7 @@ const Routes = async () => {
   else if (pathList[1] == 'post') {
     const id = pathList[2];
     // not foundのバリデーション欲しい
+    // client side routingでfetchをするのはよくないのでサーバサイドに任せる方がいい
     await getPost(id)
     .then(res => {
       ReactDOM.hydrate(

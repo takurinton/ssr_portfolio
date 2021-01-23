@@ -27,6 +27,8 @@ export const Me: React.FC = Layout((props: { lang: string }) => {
   )
 });
 
+// TODO これは移動する
+// components/pages/me/self.tsとかに変数として定義してexportする 
 const wiki_ja = ` 
 # 基本
 - 名前: 片山 拓海
