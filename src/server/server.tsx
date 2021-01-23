@@ -15,6 +15,10 @@ import { PostProps } from '../types/types';
 
 import { getParams } from '../utils/getParams';
 
+import { syntaxHighlight } from '../styles/markdown/syntaxHighlight';
+import marked from 'marked';
+const { markdownStyle } = require('../styles/markdown/dairyreport');
+
 const app = express();
 
 app.use(express.static('dist'));
@@ -64,6 +68,22 @@ app.get('/about', (req, res) => {
 app.get('/post/:id', async (req, res) => {
   const id = req.params.id;
   const post: PostProps = await getPost(id);
+
+  syntaxHighlight() 
+  const r: marked.Renderer = markdownStyle()
+  const md: string = marked(post.contents, {renderer: r})
+  const pubDate = post.pub_date.substring(0, 10)
+
+  const props: PostProps = {
+    id: post.id,
+    title: post.title, 
+    category: post.category,
+    contents: md, 
+    contents_image_url: post.contents_image_url,
+    pub_date: pubDate,
+    comment: post.comment
+  }
+
   const _renderd = renderToStaticMarkup(
     React.createElement(
       Html({
@@ -72,7 +92,7 @@ app.get('/post/:id', async (req, res) => {
         children: Post,
         discription: `${post.title} | たくりんとんのブログ`, 
         image: `https://takurinton.com${post.contents_image_url}`,
-        props: post,
+        props: props,
       })
     )
   );
