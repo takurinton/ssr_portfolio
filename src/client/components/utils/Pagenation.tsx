@@ -8,7 +8,6 @@ import { button_color, h4, pink_kawaii, theme_back, theme_main, thick } from '..
 
 const pagination = css`
     margin: 30px auto 0;
-    width: 50%;
     position: relative;
 `;
 
