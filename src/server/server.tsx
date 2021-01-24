@@ -27,26 +27,30 @@ app.use(express.static('api'));
 app.listen(3000);
 
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
   const page: string = req.query.page === undefined ? '' : req.query.page;
   const category: string = req.query.category === undefined ? '' : encodeURI(req.query.category);
   const qs: string = getParams(page, category);
-  const posts = await getPosts(qs);
-  const _renderd = renderToStaticMarkup(
-    React.createElement(
-      Html({
-        title: 'たくりんとん',
-        slug: `http://localhost:3000/`,
-        children: Home,
-        discription: undefined, 
-        image: undefined, 
-        props: posts,
-      })
-    )
-  );
-  res.setHeader('Content-Type', 'text/html')
-  const renderd = '<!DOCTYPE html>' + _renderd;
-  res.send(renderd);
+  getPosts(qs)
+  .then(res => res.json())
+  .then(json => {
+    const _renderd = renderToStaticMarkup(
+      React.createElement(
+        Html({
+          title: 'たくりんとん',
+          slug: `http://localhost:3000/`,
+          children: Home,
+          discription: undefined, 
+          image: undefined, 
+          props: json,
+        })
+      )
+    );
+    res.setHeader('Content-Type', 'text/html')
+    const renderd = '<!DOCTYPE html>' + _renderd;
+    res.send(renderd);
+  })
+  .catch(err => { throw new Error(err) })
 });
 
 app.get('/about', (req, res) => {
@@ -67,43 +71,46 @@ app.get('/about', (req, res) => {
   res.send(renderd);
 });
 
-app.get('/post/:id', async (req, res) => {
+app.get('/post/:id', (req, res) => {
   const id = req.params.id;
-  const post: PostProps = await getPost(id);
-
-  syntaxHighlight() 
-  const r: marked.Renderer = markdownStyle()
-  const md: string = marked(post.contents, {renderer: r})
-  const pubDate = post.pub_date.substring(0, 10)
-
-  const props: PostProps = {
-    id: post.id,
-    title: post.title, 
-    category: post.category,
-    contents: md, 
-    contents_image_url: post.contents_image_url,
-    pub_date: pubDate,
-    comment: post.comment
-  }
-
-  const _renderd = renderToStaticMarkup(
-    React.createElement(
-      Html({
-        title: `${post.title} | たくりんとんのブログ`,
-        slug: `http://localhost:3000/`,
-        children: Post,
-        discription: `${post.title} | たくりんとんのブログ`, 
-        image: `https://takurinton.com${post.contents_image_url}`,
-        props: props,
-      })
-    )
-  );
-  res.setHeader('Content-Type', 'text/html')
-  const renderd = '<!DOCTYPE html>' + _renderd;
-  res.send(renderd);
+  getPost(id)
+  .then(res => res.json())
+  .then(json => {
+    syntaxHighlight() 
+    const r: marked.Renderer = markdownStyle()
+    const md: string = marked(json.contents, {renderer: r})
+    const pubDate = json.pub_date.substring(0, 10)
+  
+    const props: PostProps = {
+      id: json.id,
+      title: json.title, 
+      category: json.category,
+      contents: md, 
+      contents_image_url: json.contents_image_url,
+      pub_date: pubDate,
+      comment: json.comment
+    }
+  
+    const _renderd = renderToStaticMarkup(
+      React.createElement(
+        Html({
+          title: `${json.title} | たくりんとんのブログ`,
+          slug: `http://localhost:3000/`,
+          children: Post,
+          discription: `${json.title} | たくりんとんのブログ`, 
+          image: `https://takurinton.com${json.contents_image_url}`,
+          props: props,
+        })
+      )
+    );
+    res.setHeader('Content-Type', 'text/html')
+    const renderd = '<!DOCTYPE html>' + _renderd;
+    res.send(renderd);
+  })
+  .catch(err => { throw new Error(err) })
 })
 
-app.get('/me', async (req, res) => {
+app.get('/me', (req, res) => {
   const lang = req.query.lang === 'en' ? 'en' : 'ja';
   const _renderd = renderToStaticMarkup(
     React.createElement(

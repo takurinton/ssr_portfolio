@@ -7,7 +7,6 @@ import { Post } from '../pages/Post';
 import { Me } from '../pages/Me';
 import { Contact } from '../pages/Contact';
 import { Memo } from '../pages/Memo';
-import { getPost, getPosts } from '../../utils/_api/blog/post';
 
 import { PostsProps } from '../../types/types';
 
