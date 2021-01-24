@@ -22,7 +22,7 @@ const Head = (props) => {
             <meta name="twitter:image" content={props.image} />
             <link rel="shortcut icon" href={"https://www.takurinton.com/me.jpeg"} />
             <link rel="apple-touch-icon" href={"https://www.takurinton.com/me.jpeg"} />
-            <link rel="stylesheet" type="text/css" href={`https://takurinton.s3.amazonaws.com/api/api/client.css`} />
+            <link rel="stylesheet" type="text/css" href={`https://takurinton.s3.amazonaws.com/client.css`} />
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />
             <meta name="viewport" content="width=device-width,initial-scale=1" />
             <style>
@@ -65,7 +65,7 @@ const Html = (props: Props) => {
                     <props.children {...props.props} />
                 </div>
                 <script id="json" type="text/plain" data-json={ JSON.stringify(props.props) }></script>
-                <script async defer src={`https://takurinton.s3.amazonaws.com/api/api/client.js`} />
+                <script async defer src={`https://takurinton.s3.amazonaws.com/client.js`} />
             </body>
         </html>
     );
