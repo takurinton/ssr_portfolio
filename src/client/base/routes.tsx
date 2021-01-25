@@ -16,14 +16,10 @@ const Routes = async () => {
   const pathList = window.location.pathname.split('/');
   const params = window.location.search;
   if (pathList[1] == '') {
-    await fetch('/')
-    .then(() => {
-      const json: PostsProps = JSON.parse(document.getElementById('json').getAttribute('data-json'));
-      ReactDOM.hydrate(
-        <Home {...json} />, document.getElementById('main')
-      )
-    })
-    .catch(err => console.error(err))
+    const json: PostsProps = JSON.parse(document.getElementById('json').getAttribute('data-json'));
+    ReactDOM.hydrate(
+      <Home {...json} />, document.getElementById('main')
+    )
   }
   else if (pathList[1] == 'about') {
     ReactDOM.hydrate(
@@ -37,16 +33,10 @@ const Routes = async () => {
   }
   else if (pathList[1] == 'post') {
     const id = pathList[2];
-    // not foundのバリデーション欲しい
-    // client side routingでfetchをするのはよくないのでサーバサイドに任せる方がいい
-    await fetch(`/post/${id}`)
-    .then(() => {
-      const json: PostsProps = JSON.parse(document.getElementById('json').getAttribute('data-json'));
-      ReactDOM.hydrate(
-        <Post {...json} />, document.getElementById('main')
-      );
-    })
-    .catch(err => console.error(err))
+    const json: PostsProps = JSON.parse(document.getElementById('json').getAttribute('data-json'));
+    ReactDOM.hydrate(
+      <Post {...json} />, document.getElementById('main')
+    );
   }
   else if (pathList[1] == 'contact') {
     ReactDOM.hydrate(

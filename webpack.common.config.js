@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// require("dotenv").config();
+require("dotenv").config();
 
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -10,6 +10,10 @@ module.exports = {
     entry: {
       // server: './src/server/server.tsx', 
       client: './src/client/app.tsx'
+    },
+    devServer: {
+      port: process.env.PORT ? process.env.PORT : 3000,
+      host: `localhost`,
     },
     devtool: 'source-map',　// client.js.mapが生成される
     module: {
