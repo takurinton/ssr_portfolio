@@ -34,6 +34,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fastify": "^3.11.0",
+    "fastify-static": "^3.4.0",
     "highlight.js": "^10.5.0",
     "linaria": "^3.0.0-beta.1",
     "marked": "^1.2.7",

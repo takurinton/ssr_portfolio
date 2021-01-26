@@ -1,5 +1,7 @@
 // import express from 'express';
 import fastify from "fastify";
+const fastifyStatic = require('fastify-static');
+const path = require('path')
 import * as React from 'react';
 import ReactDomServer from 'react-dom/server'
 
@@ -26,6 +28,10 @@ const { markdownStyle } = require('../styles/markdown/dairyreport');
 const app = fastify();
 
 // app.use(express.static('api'));
+app.register(fastifyStatic, {
+  root: path.join(process.cwd(), 'api')
+})
+
 app.listen(3000);
 
 
