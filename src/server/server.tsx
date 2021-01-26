@@ -1,6 +1,6 @@
 import express from 'express';
 import * as React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
+import ReactDomServer from 'react-dom/server'
 
 import { Home } from '../client/pages/Home';
 import { About } from '../client/pages/About';
@@ -15,6 +15,7 @@ import { getPosts, getPost } from '../utils/_api/blog/post';
 import { PostProps } from '../types/types';
 
 import { getParams } from '../utils/getParams';
+import { changeDate } from '../utils/changeDate';
 
 import { syntaxHighlight } from '../styles/markdown/syntaxHighlight';
 import marked from 'marked';
@@ -31,10 +32,13 @@ app.get('/', (req, res) => {
   const page: string = req.query.page === undefined ? '' : req.query.page;
   const category: string = req.query.category === undefined ? '' : encodeURI(req.query.category);
   const qs: string = getParams(page, category);
+  res.setHeader('Content-Type', 'text/html; charset=utf8')
+  res.write('<!DOCTYPE html>');
+
   getPosts(qs)
   .then(res => res.json())
   .then(json => {
-    const _renderd = renderToStaticMarkup(
+    ReactDomServer.renderToStaticNodeStream(
       React.createElement(
         Html({
           title: 'たくりんとん',
@@ -45,16 +49,17 @@ app.get('/', (req, res) => {
           props: json,
         })
       )
-    );
-    res.setHeader('Content-Type', 'text/html')
-    const renderd = '<!DOCTYPE html>' + _renderd;
-    res.send(renderd);
+    ).pipe(res);
   })
-  .catch(err => { throw new Error(err) })
+  .catch(err => {
+    res.setHeader('Content-Type', 'text/html; charset=utf8')
+    res.send(err);
+  });
 });
 
 app.get('/about', (req, res) => {
-  const _renderd = renderToStaticMarkup(
+  res.setHeader('Content-Type', 'text/html; charset=utf8')
+  ReactDomServer.renderToStaticNodeStream(
     React.createElement(
       Html({
         title: 'たくりんとん | about',
@@ -65,21 +70,20 @@ app.get('/about', (req, res) => {
         props: {},
       })
     )
-  );
-  res.setHeader('Content-Type', 'text/html')
-  const renderd = '<!DOCTYPE html>' + _renderd;
-  res.send(renderd);
+  ).pipe(res);
 });
 
 app.get('/post/:id', (req, res) => {
   const id = req.params.id;
+  res.setHeader('Content-Type', 'text/html; charset=utf8')
+  res.write('<!DOCTYPE html>');
   getPost(id)
   .then(res => res.json())
   .then(json => {
     syntaxHighlight() 
     const r: marked.Renderer = markdownStyle()
     const md: string = marked(json.contents, {renderer: r})
-    const pubDate = json.pub_date.substring(0, 10)
+    const pubDate = changeDate(json.pub_date);
   
     const props: PostProps = {
       id: json.id,
@@ -91,7 +95,7 @@ app.get('/post/:id', (req, res) => {
       comment: json.comment
     }
   
-    const _renderd = renderToStaticMarkup(
+    ReactDomServer.renderToStaticNodeStream(
       React.createElement(
         Html({
           title: `${json.title} | たくりんとんのブログ`,
@@ -102,17 +106,16 @@ app.get('/post/:id', (req, res) => {
           props: props,
         })
       )
-    );
-    res.setHeader('Content-Type', 'text/html')
-    const renderd = '<!DOCTYPE html>' + _renderd;
-    res.send(renderd);
+    ).pipe(res);
   })
   .catch(err => { throw new Error(err) })
 })
 
 app.get('/me', (req, res) => {
   const lang = req.query.lang === 'en' ? 'en' : 'ja';
-  const _renderd = renderToStaticMarkup(
+  res.setHeader('Content-Type', 'text/html; charset=utf8')
+  res.write('<!DOCTYPE html>');
+  ReactDomServer.renderToStaticNodeStream(
     React.createElement(
       Html({
         title: `たくりんとん | me`,
@@ -123,14 +126,13 @@ app.get('/me', (req, res) => {
         props: {lang: lang},
       })
     )
-  );
-  res.setHeader('Content-Type', 'text/html')
-  const renderd = '<!DOCTYPE html>' + _renderd;
-  res.send(renderd);
+  ).pipe(res);
 })
 
 app.get('/memo', (req, res) => {
-  const _renderd = renderToStaticMarkup(
+  res.setHeader('Content-Type', 'text/html; charset=utf8')
+  res.write('<!DOCTYPE html>');
+  ReactDomServer.renderToStaticNodeStream(
     React.createElement(
       Html({
         title: 'たくりんとん | memo',
@@ -141,14 +143,13 @@ app.get('/memo', (req, res) => {
         props: {},
       })
     )
-  );
-  res.setHeader('Content-Type', 'text/html')
-  const renderd = '<!DOCTYPE html>' + _renderd;
-  res.send(renderd);
+  ).pipe(res);
 });
 
 app.get('/contact', (req, res) => {
-  const _renderd = renderToStaticMarkup(
+  res.setHeader('Content-Type', 'text/html; charset=utf8')
+  res.write('<!DOCTYPE html>');
+  ReactDomServer.renderToStaticNodeStream(
     React.createElement(
       Html({
         title: 'たくりんとん | contact',
@@ -159,8 +160,5 @@ app.get('/contact', (req, res) => {
         props: {},
       })
     )
-  );
-  res.setHeader('Content-Type', 'text/html')
-  const renderd = '<!DOCTYPE html>' + _renderd;
-  res.send(renderd);
+  ).pipe(res);
 });

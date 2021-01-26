@@ -3,6 +3,7 @@ import * as React from 'react';
 import { h4, h5, p, pink_kawaii, theme_text, thick } from '../../../../styles/theme';
 import { css } from 'linaria';
 import { PostProps } from '../../../../types/types';
+import { changeDate } from '../../../../utils/changeDate';
 
 const title = css`
     text-decoration: none; 
@@ -51,7 +52,7 @@ const pubdate = css`
 `;
 
 export const Post: React.FC<PostProps> = (props: PostProps) => {
-    const pubDate = props.pub_date.substring(0, 10);
+    const pubDate = changeDate(props.pub_date);
     const image = props.contents_image_url === '' ? 'https://www.takurinton.com/me.jpeg' : 'https://takurinton.com' + props.contents_image_url;
     return (
         <div key={props.id} className={box}>
