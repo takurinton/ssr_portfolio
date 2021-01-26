@@ -1,4 +1,5 @@
-import express from 'express';
+// import express from 'express';
+import fastify from "fastify";
 import * as React from 'react';
 import ReactDomServer from 'react-dom/server'
 
@@ -22,23 +23,22 @@ import marked from 'marked';
 import { Memo } from '../client/pages/Memo';
 const { markdownStyle } = require('../styles/markdown/dairyreport');
 
-const app = express();
+const app = fastify();
 
-app.use(express.static('api'));
+// app.use(express.static('api'));
 app.listen(3000);
 
 
 app.get('/', (req, res) => {
-  const page: string = req.query.page === undefined ? '' : req.query.page;
-  const category: string = req.query.category === undefined ? '' : encodeURI(req.query.category);
-  const qs: string = getParams(page, category);
-  res.setHeader('Content-Type', 'text/html; charset=utf8')
-  res.write('<!DOCTYPE html>');
+  const page = (req.query as { page: undefined | string }).page ?? '';
+  const category = (req.query as { category: undefined | string }).category ?? '';
+
+  const qs: string = getParams(page, category) ?? '';
 
   getPosts(qs)
   .then(res => res.json())
   .then(json => {
-    ReactDomServer.renderToStaticNodeStream(
+    const rendered = ReactDomServer.renderToStaticNodeStream(
       React.createElement(
         Html({
           title: 'たくりんとん',
@@ -49,17 +49,24 @@ app.get('/', (req, res) => {
           props: json,
         })
       )
-    ).pipe(res);
+    );
+    res.type('text/html; charset=utf8')
+    res.raw.write("<!DOCTYPE html>");
+    res.send(rendered);
   })
   .catch(err => {
-    res.setHeader('Content-Type', 'text/html; charset=utf8')
+    res.header("content-type", "text/html; charset=utf-8");
+    res.raw.write('<!DOCTYPE html>');
     res.send(err);
   });
 });
 
 app.get('/about', (req, res) => {
-  res.setHeader('Content-Type', 'text/html; charset=utf8')
-  ReactDomServer.renderToStaticNodeStream(
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
+
+  const rendered = ReactDomServer.renderToStaticNodeStream(
     React.createElement(
       Html({
         title: 'たくりんとん | about',
@@ -70,13 +77,17 @@ app.get('/about', (req, res) => {
         props: {},
       })
     )
-  ).pipe(res);
+  )
+  res.raw.write('<!DOCTYPE html>');
+  res.send(rendered);
 });
 
 app.get('/post/:id', (req, res) => {
-  const id = req.params.id;
-  res.setHeader('Content-Type', 'text/html; charset=utf8')
-  res.write('<!DOCTYPE html>');
+  const id: string = (req.params as { id: string }).id;
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
+
   getPost(id)
   .then(res => res.json())
   .then(json => {
@@ -95,7 +106,7 @@ app.get('/post/:id', (req, res) => {
       comment: json.comment
     }
   
-    ReactDomServer.renderToStaticNodeStream(
+    const rendered = ReactDomServer.renderToStaticNodeStream(
       React.createElement(
         Html({
           title: `${json.title} | たくりんとんのブログ`,
@@ -106,16 +117,21 @@ app.get('/post/:id', (req, res) => {
           props: props,
         })
       )
-    ).pipe(res);
+    );
+    res.raw.write('<!DOCTYPE html>');
+    res.send(rendered);
   })
   .catch(err => { throw new Error(err) })
 })
 
 app.get('/me', (req, res) => {
-  const lang = req.query.lang === 'en' ? 'en' : 'ja';
-  res.setHeader('Content-Type', 'text/html; charset=utf8')
-  res.write('<!DOCTYPE html>');
-  ReactDomServer.renderToStaticNodeStream(
+  const { _lang } = req.query as { _lang?: string }
+  const lang = _lang === 'en' ? 'en' : 'ja';
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
+
+  const rendered = ReactDomServer.renderToStaticNodeStream(
     React.createElement(
       Html({
         title: `たくりんとん | me`,
@@ -126,13 +142,17 @@ app.get('/me', (req, res) => {
         props: {lang: lang},
       })
     )
-  ).pipe(res);
+  )
+  res.raw.write('<!DOCTYPE html>');
+  res.send(rendered);;
 })
 
 app.get('/memo', (req, res) => {
-  res.setHeader('Content-Type', 'text/html; charset=utf8')
-  res.write('<!DOCTYPE html>');
-  ReactDomServer.renderToStaticNodeStream(
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
+
+  const rendered = ReactDomServer.renderToStaticNodeStream(
     React.createElement(
       Html({
         title: 'たくりんとん | memo',
@@ -143,13 +163,17 @@ app.get('/memo', (req, res) => {
         props: {},
       })
     )
-  ).pipe(res);
+  )
+  res.raw.write('<!DOCTYPE html>');
+  res.send(rendered);;
 });
 
 app.get('/contact', (req, res) => {
-  res.setHeader('Content-Type', 'text/html; charset=utf8')
-  res.write('<!DOCTYPE html>');
-  ReactDomServer.renderToStaticNodeStream(
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
+
+  const rendered = ReactDomServer.renderToStaticNodeStream(
     React.createElement(
       Html({
         title: 'たくりんとん | contact',
@@ -160,5 +184,7 @@ app.get('/contact', (req, res) => {
         props: {},
       })
     )
-  ).pipe(res);
+  );
+  res.raw.write('<!DOCTYPE html>');
+  res.send(rendered);
 });
