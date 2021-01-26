@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { h4, h5, p, pink_kawaii, theme_text, thick } from '../../../../styles/theme';
+import { p, pink_kawaii } from '../../../../styles/theme';
 import { css } from 'linaria';
 import { PostProps } from '../../../../types/types';
 import { changeDate } from '../../../../utils/changeDate';
@@ -42,6 +42,7 @@ const box = css`
     }
 
     img {
+        height: auto;
         width: 80%;
     }
 `;

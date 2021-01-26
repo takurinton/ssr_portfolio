@@ -1,5 +1,4 @@
 import * as React from 'react';
-import fetch from 'node-fetch';
 import ReactDOM from 'react-dom';
 import { Home } from '../pages/Home';
 import { About } from '../pages/About';
@@ -7,8 +6,6 @@ import { Post } from '../pages/Post';
 import { Me } from '../pages/Me';
 import { Contact } from '../pages/Contact';
 import { Memo } from '../pages/Memo';
-
-import { PostsProps, PostProps } from '../../types/types';
 
 // TODO: prefetchも追加する
 

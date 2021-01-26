@@ -51,11 +51,7 @@ interface Props {
     children: () => React.FC;
     title: string;
     image: string,
-    discription: string,
-    // data: {
-    //     image: string, 
-    //     discription: string,
-    // }
+    discription: string
     slug: string, 
     props?: any;
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from "linaria";
-import { h4, h5, pink_kawaii, theme_text, thick } from '../../../styles/theme';
+import { h5 } from '../../../styles/theme';
 
 const footer = css`
     margin: 100px auto;
