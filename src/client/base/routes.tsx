@@ -8,52 +8,59 @@ import { Me } from '../pages/Me';
 import { Contact } from '../pages/Contact';
 import { Memo } from '../pages/Memo';
 
-import { PostsProps } from '../../types/types';
+import { PostsProps, PostProps } from '../../types/types';
 
 // TODO: prefetchも追加する
 
 const Routes = async () => {
-  const pathList = window.location.pathname.split('/');
-  const params = window.location.search;
-  if (pathList[1] == '') {
-    const json: PostsProps = JSON.parse(document.getElementById('json').getAttribute('data-json'));
-    ReactDOM.hydrate(
-      <Home {...json} />, document.getElementById('main')
-    )
-  }
-  else if (pathList[1] == 'about') {
-    ReactDOM.hydrate(
-      <About />, document.getElementById('main')
-    );
-  }
-  else if (pathList[1] == 'me') {
-    ReactDOM.hydrate(
-      <Me />, document.getElementById('main')
-    );
-  }
-  else if (pathList[1] == 'post') {
-    const id = pathList[2];
-    const json: PostsProps = JSON.parse(document.getElementById('json').getAttribute('data-json'));
-    ReactDOM.hydrate(
-      <Post {...json} />, document.getElementById('main')
-    );
-  }
-  else if (pathList[1] == 'contact') {
+  // 今path多くないからこれでいい
+  // const pathList = window.location.pathname.split('/');
+  const path = window.location.pathname.split('/')[1];
+  const json = JSON.parse(document.getElementById('json').getAttribute('data-json'));
+
+  switch (path) {
+    case '':
+      ReactDOM.hydrate(
+        <Home {...json} />, document.getElementById('main')
+      );
+      break;
+      
+    case 'about':
+      ReactDOM.hydrate(
+        <About />, document.getElementById('main')
+      );
+      break;
+      
+    case 'me':
+      ReactDOM.hydrate(
+        <Me />, document.getElementById('main')
+      );
+      break;
+
+    case 'post':
+      ReactDOM.hydrate(
+        <Post {...json} />, document.getElementById('main')
+      );
+      break;
+    
+    case 'contact':
     ReactDOM.hydrate(
       <Contact />, document.getElementById('main')
     );
+    break;
+
+    case 'memo':
+      ReactDOM.hydrate(
+        <Memo />, document.getElementById('main')
+      );
+      break;
+
+    default: 
+      ReactDOM.hydrate(
+        <h1>page is not found</h1>, 
+        document.getElementById('main')
+      );
   }
-  else if (pathList[1] == 'memo') {
-    ReactDOM.hydrate(
-      <Memo />, document.getElementById('main')
-    );
-  }
-  else {
-    ReactDOM.hydrate(
-      <h1>not found</h1>, 
-      document.getElementById('main')
-    );
-  }
-}
+};
 
 export default Routes;

@@ -10,6 +10,7 @@ const Head = (props) => {
     if (props.image == undefined) props.image = 'https://www.takurinton.com/me.jpeg';
     return (
         <head>
+            <link rel="preconnect" href="https://ssr-test.takurinton.vercel.app/" />
             <title>{props.title}</title>
             <meta name="description" content={props.description} />
             <meta property="og:title" content={props.title} />

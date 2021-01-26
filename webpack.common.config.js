@@ -11,10 +11,6 @@ module.exports = {
       // server: './src/server/server.tsx', 
       client: './src/client/app.tsx'
     },
-    devServer: {
-      port: process.env.PORT ? process.env.PORT : 3000,
-      host: `localhost`,
-    },
     devtool: 'source-map',　// client.js.mapが生成される
     module: {
       rules: [
