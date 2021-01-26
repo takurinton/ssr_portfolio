@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { useState } from 'react'
-// import { useContact } from '../../hooks/useContact'
+import * as React from 'react';
+import { useState } from 'react';
+import { useContact } from '../hooks/useContact';
 
 import { Layout } from '../base/Layout';
 import { ContactForm } from '../components/pages/contact/ContactForm';
@@ -32,19 +32,19 @@ const main = css`
 
 export const Contact: React.FC = Layout(() => {
     const [modal, setModal] = useState<boolean>(false)
-    // const {
-    //     handleChange, 
-    //     handleSubmit, 
-    //     state
-    // } = useContact()
+    const {
+        handleChange, 
+        handleSubmit, 
+        state
+    } = useContact()
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // handleChange(e)
+        handleChange(e)
     }
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // handleSubmit(state)
+        handleSubmit(state)
         setModal(true)
     }
 
@@ -109,7 +109,7 @@ export const Contact: React.FC = Layout(() => {
                 `}
             </style>
 
-            <ContactForm state={{}} onChange={onChange} onSubmit={onSubmit} />
+            <ContactForm state={state} onChange={onChange} onSubmit={onSubmit} />
             {/* @ts-ignore */}
             <Modal 
                 isOpen={modal} 

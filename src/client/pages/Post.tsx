@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Layout } from '../base/Layout';
-import { Comments } from '../components/pages/post/Comments'
+import { Comments } from '../components/pages/post/Comments';
 import { css } from 'linaria';
 import { h5 } from '../../styles/theme';
 import { Heading } from '../components/utils/Heading';
