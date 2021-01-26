@@ -1,12 +1,16 @@
 import * as React from 'react';
+import dotenv from 'dotenv';
 
-const localhost = 'http://localhost:3000'
+dotenv.config();
+
+const STATIC_FILES = process.env.STATIC_FILES ?? 'http://localhost:3000';
 
 const Head = (props) => {
     if (props.description == undefined) props.description = 'たくりんとんのポートフォリオです';
     if (props.image == undefined) props.image = 'https://www.takurinton.com/me.jpeg';
     return (
         <head>
+            <link rel="preconnect" href="https://ssr-test.takurinton.vercel.app/" />
             <title>{props.title}</title>
             <meta name="description" content={props.description} />
             <meta property="og:title" content={props.title} />
@@ -22,7 +26,7 @@ const Head = (props) => {
             <meta name="twitter:image" content={props.image} />
             <link rel="shortcut icon" href={"https://www.takurinton.com/me.jpeg"} />
             <link rel="apple-touch-icon" href={"https://www.takurinton.com/me.jpeg"} />
-            <link rel="stylesheet" type="text/css" href={`${localhost}/client.css`} />
+            <link rel="stylesheet" type="text/css" href={`${STATIC_FILES}/client.css`} />
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/solarized-dark.min.css" />
             <meta name="viewport" content="width=device-width,initial-scale=1" />
             <style>
@@ -65,7 +69,7 @@ const Html = (props: Props) => {
                     <props.children {...props.props} />
                 </div>
                 <script id="json" type="text/plain" data-json={ JSON.stringify(props.props) }></script>
-                <script async defer src={`${localhost}/client.js`} />
+                <script async defer src={`${STATIC_FILES}/client.js`} />
             </body>
         </html>
     );

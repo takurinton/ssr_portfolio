@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// require("dotenv").config();
+require("dotenv").config();
 
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -47,6 +47,6 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'api')
     }
 };
