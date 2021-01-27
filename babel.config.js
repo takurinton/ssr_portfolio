@@ -12,4 +12,12 @@ module.exports = {
     "linaria/babel",
     "@babel/preset-typescript"
   ],
+  plugins: [
+    [
+      "transform-react-jsx",
+      {
+        "pragma": "h"
+      }
+    ], 
+  ]
 };

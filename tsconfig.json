@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
     "lib": ["es6","dom"],
-    // "module": "commonjs",
-    "noImplicitReturns": true,
-    "outDir": "lib",
     "sourceMap": true,
     "target": "es6", 
+    "jsxFactory": "preact.h",
     "jsx": "react", 
     "strict": false, 
     "esModuleInterop": true, 
-    "moduleResolution": "node"
   },
   "compileOnSave": true,
   "include": [
