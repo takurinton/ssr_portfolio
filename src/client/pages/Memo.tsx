@@ -4,7 +4,7 @@ import { css } from 'linaria';
 import { Heading } from '../components/utils/Heading'
 import { Layout } from '../base/Layout';
 
-export const Memo: React.FC = Layout(() => {
+export const Memo = Layout(() => {
     return (
         <div>
             <div style={

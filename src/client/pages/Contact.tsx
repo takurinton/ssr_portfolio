@@ -30,7 +30,7 @@ const main = css`
     }
 `
 
-export const Contact: React.FC = Layout(() => {
+export const Contact = Layout(() => {
     const [modal, setModal] = useState<boolean>(false)
     const {
         handleChange, 

@@ -1,13 +1,10 @@
 // import express from 'express';
-import fastify from "fastify";
+const fastify = require('fastify');
 const fastifyStatic = require('fastify-static');
 const path = require('path')
 
-import { h } from 'preact';
-/** @JSX h */
-import render from 'preact-render-to-string';
-// import * as React from 'react';
-// import ReactDomServer from 'react-dom/server'
+import * as React from 'react';
+import ReactDomServer from 'react-dom/server'
 
 import { Home } from '../client/pages/Home';
 import { About } from '../client/pages/About';
@@ -38,165 +35,162 @@ app.register(fastifyStatic, {
 
 app.listen(3000);
 
-const H = () => <h1>hello world</h1>;
-
 app.get('/', (req, res) => {
-  const page = (req.query as { page: undefined | string }).page ?? '';
-  const category = (req.query as { category: undefined | string }).category ?? '';
-
-  const qs: string = getParams(page, category) ?? '';
-
-  getPosts(qs)
-  .then(res => res.json())
-  .then(json => {
-
+    const page = (req.query as { page: undefined | string }).page ?? '';
+    const category = (req.query as { category: undefined | string }).category ?? '';
+  
+    const qs: string = getParams(page, category) ?? '';
+  
+    getPosts(qs)
+    .then(res => res.json())
+    .then(json => {
+      const rendered = ReactDomServer.renderToStaticNodeStream(
+        React.createElement(
+          Html({
+            title: 'たくりんとん',
+            slug: `http://localhost:3000/`,
+            children: Home,
+            discription: undefined, 
+            image: undefined, 
+            props: json,
+          })
+        )
+      );
       res.type('text/html; charset=utf8')
-      res.send(render(<H />))
-    // const rendered = render(
-    //     Html({
-    //         title: 'たくりんとん',
-    //         slug: `http://localhost:3000/`,
-    //         children: Home,
-    //         discription: undefined, 
-    //         image: undefined, 
-    //         props: json,
-    //     })
-    // )
-    // res.type('text/html; charset=utf8')
-    // res.raw.write("<!DOCTYPE html>");
-    // res.send(rendered);
-  })
-  .catch(err => {
-    res.header("content-type", "text/html; charset=utf-8");
-    res.raw.write('<!DOCTYPE html>');
-    res.send(err);
+      res.raw.write('<!DOCTYPE html>');
+      res.send(rendered);
+    })
+    .catch(err => {
+      res.header("content-type", "text/html; charset=utf-8");
+      res.raw.write('<!DOCTYPE html>');
+      res.send(err);
+    });
   });
+
+app.get('/about', (req, res) => {
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
+
+  const rendered = ReactDomServer.renderToStaticNodeStream(
+    React.createElement(
+      Html({
+        title: 'たくりんとん | about',
+        slug: `http://localhost:3000/`,
+        children: About,
+        discription: undefined, 
+        image: undefined, 
+        props: {},
+      })
+    )
+  )
+  res.raw.write('<!DOCTYPE html>');
+  res.send(rendered);
 });
 
-// app.get('/about', (req, res) => {
-//   res.headers({
-//     "content-type": "text/html; charset=utf8",
-//   });
+app.get('/post/:id', (req, res) => {
+  const id: string = (req.params as { id: string }).id;
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
 
-//   const rendered = ReactDomServer.renderToStaticNodeStream(
-//     React.createElement(
-//       Html({
-//         title: 'たくりんとん | about',
-//         slug: `http://localhost:3000/`,
-//         children: About,
-//         discription: undefined, 
-//         image: undefined, 
-//         props: {},
-//       })
-//     )
-//   )
-//   res.raw.write('<!DOCTYPE html>');
-//   res.send(rendered);
-// });
-
-// app.get('/post/:id', (req, res) => {
-//   const id: string = (req.params as { id: string }).id;
-//   res.headers({
-//     "content-type": "text/html; charset=utf8",
-//   });
-
-//   getPost(id)
-//   .then(res => res.json())
-//   .then(json => {
-//     syntaxHighlight() 
-//     const r: marked.Renderer = markdownStyle()
-//     const md: string = marked(json.contents, {renderer: r})
-//     const pubDate = changeDate(json.pub_date);
+  getPost(id)
+  .then(res => res.json())
+  .then(json => {
+    syntaxHighlight() 
+    const r: marked.Renderer = markdownStyle()
+    const md: string = marked(json.contents, {renderer: r})
+    const pubDate = changeDate(json.pub_date);
   
-//     const props: PostProps = {
-//       id: json.id,
-//       title: json.title, 
-//       category: json.category,
-//       contents: md, 
-//       contents_image_url: json.contents_image_url,
-//       pub_date: pubDate,
-//       comment: json.comment
-//     }
+    const props: PostProps = {
+      id: json.id,
+      title: json.title, 
+      category: json.category,
+      contents: md, 
+      contents_image_url: json.contents_image_url,
+      pub_date: pubDate,
+      comment: json.comment
+    }
   
-//     const rendered = ReactDomServer.renderToStaticNodeStream(
-//       React.createElement(
-//         Html({
-//           title: `${json.title} | たくりんとんのブログ`,
-//           slug: `http://localhost:3000/`,
-//           children: Post,
-//           discription: `${json.title} | たくりんとんのブログ`, 
-//           image: `https://takurinton.com${json.contents_image_url}`,
-//           props: props,
-//         })
-//       )
-//     );
-//     res.raw.write('<!DOCTYPE html>');
-//     res.send(rendered);
-//   })
-//   .catch(err => { throw new Error(err) })
-// })
+    const rendered = ReactDomServer.renderToStaticNodeStream(
+      React.createElement(
+        Html({
+          title: `${json.title} | たくりんとんのブログ`,
+          slug: `http://localhost:3000/`,
+          children: Post,
+          discription: `${json.title} | たくりんとんのブログ`, 
+          image: `https://takurinton.com${json.contents_image_url}`,
+          props: props,
+        })
+      )
+    );
+    res.raw.write('<!DOCTYPE html>');
+    res.send(rendered);
+  })
+  .catch(err => { throw new Error(err) })
+})
 
-// app.get('/me', (req, res) => {
-//   const { _lang } = req.query as { _lang?: string }
-//   const lang = _lang === 'en' ? 'en' : 'ja';
-//   res.headers({
-//     "content-type": "text/html; charset=utf8",
-//   });
+app.get('/me', (req, res) => {
+  const { _lang } = req.query as { _lang?: string }
+  const lang = _lang === 'en' ? 'en' : 'ja';
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
 
-//   const rendered = ReactDomServer.renderToStaticNodeStream(
-//     React.createElement(
-//       Html({
-//         title: `たくりんとん | me`,
-//         slug: `http://localhost:3000/`,
-//         children: Me,
-//         discription: `たくりんとん | me`, 
-//         image: undefined,
-//         props: {lang: lang},
-//       })
-//     )
-//   )
-//   res.raw.write('<!DOCTYPE html>');
-//   res.send(rendered);;
-// })
+  const rendered = ReactDomServer.renderToStaticNodeStream(
+    React.createElement(
+      Html({
+        title: `たくりんとん | me`,
+        slug: `http://localhost:3000/`,
+        children: Me,
+        discription: `たくりんとん | me`, 
+        image: undefined,
+        props: {lang: lang},
+      })
+    )
+  )
+  res.raw.write('<!DOCTYPE html>');
+  res.send(rendered);;
+})
 
-// app.get('/memo', (req, res) => {
-//   res.headers({
-//     "content-type": "text/html; charset=utf8",
-//   });
+app.get('/memo', (req, res) => {
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
 
-//   const rendered = ReactDomServer.renderToStaticNodeStream(
-//     React.createElement(
-//       Html({
-//         title: 'たくりんとん | memo',
-//         slug: `http://localhost:3000/`,
-//         children: Memo,
-//         discription: 'たくりんとん | memo', 
-//         image: undefined, 
-//         props: {},
-//       })
-//     )
-//   )
-//   res.raw.write('<!DOCTYPE html>');
-//   res.send(rendered);;
-// });
+  const rendered = ReactDomServer.renderToStaticNodeStream(
+    React.createElement(
+      Html({
+        title: 'たくりんとん | memo',
+        slug: `http://localhost:3000/`,
+        children: Memo,
+        discription: 'たくりんとん | memo', 
+        image: undefined, 
+        props: {},
+      })
+    )
+  )
+  res.raw.write('<!DOCTYPE html>');
+  res.send(rendered);;
+});
 
-// app.get('/contact', (req, res) => {
-//   res.headers({
-//     "content-type": "text/html; charset=utf8",
-//   });
+app.get('/contact', (req, res) => {
+  res.headers({
+    "content-type": "text/html; charset=utf8",
+  });
 
-//   const rendered = ReactDomServer.renderToStaticNodeStream(
-//     React.createElement(
-//       Html({
-//         title: 'たくりんとん | contact',
-//         slug: `http://localhost:3000/`,
-//         children: Contact,
-//         discription: 'たくりんとん | contact', 
-//         image: undefined, 
-//         props: {},
-//       })
-//     )
-//   );
-//   res.raw.write('<!DOCTYPE html>');
-//   res.send(rendered);
-// });
+  const rendered = ReactDomServer.renderToStaticNodeStream(
+    React.createElement(
+      Html({
+        title: 'たくりんとん | contact',
+        slug: `http://localhost:3000/`,
+        children: Contact,
+        discription: 'たくりんとん | contact', 
+        image: undefined, 
+        props: {},
+      })
+    )
+  );
+  res.raw.write('<!DOCTYPE html>');
+  res.send(rendered);
+});

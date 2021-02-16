@@ -22,7 +22,7 @@ const home = css`
 `;
 
 
-export const Posts: React.FC<PostsProps> = (props: PostsProps) => {
+export const Posts = (props: PostsProps) => {
     const next = props.next 
     const prev = props.previous
     const title = props.category === null ? '全ての記事' : `${props.category}の記事一覧`

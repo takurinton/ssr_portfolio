@@ -1,18 +1,14 @@
 {
   "compilerOptions": {
-    "jsxFactory": "h",
-    "target": "es5",
-    "module": "commonjs",
-    "jsx": "react",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }, 
+    "lib": ["es6","dom"],
+    "sourceMap": true,
+    "target": "es6", 
+    "jsx": "react", 
+    "strict": false, 
+    "esModuleInterop": true, 
+  },
+  "compileOnSave": true,
   "include": [
     "src"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

@@ -48,7 +48,7 @@ const Head = (props) => {
 }
 
 interface Props {
-    children: () => React.FC;
+    children: (props: any) => JSX.Element;
     title: string;
     image: string,
     discription: string

@@ -8,7 +8,7 @@ import { Layout } from '../base/Layout';
 
 const { markdownStyle } = require('../../styles/markdown/dairyreport')
 
-export const Me: React.FC = Layout((props: { lang: string }) => {
+export const Me = Layout((props: { lang: string }) => {
   const r: marked.Renderer = markdownStyle()
   const lang = props.lang === 'en' ? wiki_en : wiki_ja;
   const md: string = marked(lang, {renderer: r})
