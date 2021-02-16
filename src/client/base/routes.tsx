@@ -1,5 +1,4 @@
 import * as React from 'react';
-import fetch from 'node-fetch';
 import ReactDOM from 'react-dom';
 import { Home } from '../pages/Home';
 import { About } from '../pages/About';
@@ -8,59 +7,86 @@ import { Me } from '../pages/Me';
 import { Contact } from '../pages/Contact';
 import { Memo } from '../pages/Memo';
 
-import { PostsProps, PostProps } from '../../types/types';
+const Link = (href: string, children: JSX.Element) => {
+  fetch(`/pre/${href}`)
+  .then(res => res.json())
+  .then(json => {
+    <div>
+      {children}
+    </div>
+  })
+}
 
-// TODO: prefetchも追加する
-
-const Routes = async () => {
-  // 今path多くないからこれでいい
-  // const pathList = window.location.pathname.split('/');
-  const path = window.location.pathname.split('/')[1];
-  const json = JSON.parse(document.getElementById('json').getAttribute('data-json'));
-
-  switch (path) {
-    case '':
-      ReactDOM.hydrate(
-        <Home {...json} />, document.getElementById('main')
-      );
-      break;
-      
-    case 'about':
-      ReactDOM.hydrate(
-        <About />, document.getElementById('main')
-      );
-      break;
-      
-    case 'me':
-      ReactDOM.hydrate(
-        <Me />, document.getElementById('main')
-      );
-      break;
-
-    case 'post':
-      ReactDOM.hydrate(
-        <Post {...json} />, document.getElementById('main')
-      );
-      break;
+const Routes = () => {
+  // 2home
+  fetch('/pre/posts')
+  .then(res => res.json())
+  .then(json => {
+    Array.from(document.getElementsByClassName("home")).forEach(h => {
+      h.addEventListener("click", e => {
+        e.preventDefault()
+        history.pushState(null, 'たくりんとん', '/')
+        ReactDOM.hydrate(
+            <Home {...json} />, 
+            document.getElementById('main')
+        );
+    });
     
-    case 'contact':
-    ReactDOM.hydrate(
-      <Contact />, document.getElementById('main')
-    );
-    break;
+  });
 
-    case 'memo':
+  // 2me
+  Array.from(document.getElementsByClassName("me")).forEach(m => {
+    m.addEventListener('click', e => {
+      e.preventDefault()
+      history.pushState(null, 'たくりんとん | me', '/me')
       ReactDOM.hydrate(
-        <Memo />, document.getElementById('main')
+          <Me />, 
+          document.getElementById('main')
       );
-      break;
+    })
+  })
 
-    default: 
-      ReactDOM.hydrate(
-        <h1>page is not found</h1>, 
-        document.getElementById('main')
-      );
+  Array.from(document.getElementsByClassName('post')).forEach(p => { 
+    const id = p.getAttribute("href").split('/')[2]
+    fetch(`/pre/post/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      p.addEventListener('click', e => {
+        e.preventDefault()
+        history.pushState(null, `たくりんとん | ${json.title}`, `/post/${id}`)
+        ReactDOM.hydrate(
+            <Post {...json} />, 
+            document.getElementById('main')
+        );
+      })
+    })
+  })
+});
+
+  const Component = () => {
+    const path = window.location.pathname.split('/')[1]; 
+    const json = JSON.parse(document.getElementById('json').getAttribute('data-json'));
+    switch (path) {
+      case '':
+        return <Home {...json} />;  
+      case 'about':
+        return <About />;
+      case 'me':
+        return <Me />;
+      case 'post':
+        return <Post {...json} />;
+      case 'contact':
+        return <Contact />;
+      case 'memo':
+        return <Memo />;
+      default: 
+        return <h1>page is not found</h1>;
+    }
   }
+  ReactDOM.hydrate(
+    <Component />, 
+    document.getElementById('main')
+  );
 };
 
 export default Routes;

@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { h4, h5, p, pink_kawaii, theme_text, thick } from '../../../../styles/theme';
+import { p, pink_kawaii } from '../../../../styles/theme';
 import { css } from 'linaria';
 import { PostProps } from '../../../../types/types';
+import { changeDate } from '../../../../utils/changeDate';
 
 const title = css`
     text-decoration: none; 
@@ -41,6 +42,7 @@ const box = css`
     }
 
     img {
+        height: auto;
         width: 80%;
     }
 `;
@@ -50,13 +52,13 @@ const pubdate = css`
     color: #222222;
 `;
 
-export const Post: React.FC<PostProps> = (props: PostProps) => {
-    const pubDate = props.pub_date.substring(0, 10);
+export const Post = (props: PostProps) => {
+    const pubDate = changeDate(props.pub_date);
     const image = props.contents_image_url === '' ? 'https://www.takurinton.com/me.jpeg' : 'https://takurinton.com' + props.contents_image_url;
     return (
         <div key={props.id} className={box}>
             <div>
-                <a href={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
+                <a href={`/post/${props.id}`} style={{ textDecoration: 'none' }} className="post">
                     <h1 className={title}>{props.title}</h1>
                     <img src={image} alt={props.title} /> <br /> 
                     <p className={pubdate}>{pubDate}</p>

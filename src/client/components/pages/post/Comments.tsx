@@ -5,7 +5,6 @@ import { Comment } from './Comment';
 import { CommentProps } from '../../../../types/types';
 import { useComment } from '../../../hooks/useComment'
 import { CommentForm } from './CommentForm';
-import { h4, h5, pink_kawaii } from '../../../../styles/theme';
 
 const form = css`
     margin: 0 auto;
@@ -15,7 +14,7 @@ const form = css`
     }
 `;
 
-export const Comments: React.FC = (props: { postId: number, comment: CommentProps[] }) => {
+export const Comments = (props: { postId: number, comment: CommentProps[] }) => {
     const {
         handleChange, 
         handleSubmit, 

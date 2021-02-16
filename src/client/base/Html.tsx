@@ -12,6 +12,7 @@ const Head = (props) => {
         <head>
             <link rel="preconnect" href="https://ssr-test.takurinton.vercel.app/" />
             <title>{props.title}</title>
+            <meta http-equiv="content-type" charset="utf-8" />
             <meta name="description" content={props.description} />
             <meta property="og:title" content={props.title} />
             <meta property="og:description" content={props.description} />
@@ -47,14 +48,10 @@ const Head = (props) => {
 }
 
 interface Props {
-    children: () => React.FC;
+    children: (props: any) => JSX.Element;
     title: string;
     image: string,
-    discription: string,
-    // data: {
-    //     image: string, 
-    //     discription: string,
-    // }
+    discription: string
     slug: string, 
     props?: any;
 }

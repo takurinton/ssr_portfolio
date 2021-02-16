@@ -5,11 +5,9 @@ import { Posts } from '../components/pages/home/Posts';
 
 import { PostsProps } from '../../types/types';
 
-export const Home: React.FC<PostsProps> = Layout((props: PostsProps) => {
-    return (
-        <div>
-            <Main />
-            <Posts {...props} />
-        </div> 
-    )
-});
+export const Home = Layout((props: PostsProps) => (
+    <div>
+        <Main />
+        <Posts {...props} />
+    </div> 
+));

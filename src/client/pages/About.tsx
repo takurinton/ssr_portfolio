@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const About: React.FC = () => {
+export const About = () => {
     const [count, setCount] = React.useState(0)
 
     const onClick = () => {

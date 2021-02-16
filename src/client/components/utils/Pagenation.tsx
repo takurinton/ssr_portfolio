@@ -2,9 +2,7 @@ import * as React from 'react';
 import { PageButton } from './PageButton';
 
 import { css } from 'linaria';
-import { button_color, h4, pink_kawaii, theme_back, theme_main, thick } from '../../../styles/theme';
-// const css = require('../styles/style/dairyreport.scss')
-
+import { h4, pink_kawaii, theme_main } from '../../../styles/theme';
 
 const pagination = css`
     margin: 30px auto 0;
