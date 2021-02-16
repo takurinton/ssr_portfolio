@@ -18,8 +18,8 @@ const detail = css`
     }
 `
 
-export const Post: React.FC<PostProps> = Layout((props: PostProps) => {
-  return (
+export const Post = Layout((props: PostProps) =>  
+  (
     <div>
       <div className={detail}>
         <Heading text={props.title} />
@@ -30,4 +30,4 @@ export const Post: React.FC<PostProps> = Layout((props: PostProps) => {
        <Comments postId={props.id} comment={props.comment} />
     </div>
   )
-});
+);

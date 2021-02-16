@@ -23,7 +23,7 @@ const _comment = css`
     }    
 `
 
-export const Comment: React.FC = (comment: CommentProps) => {
+export const Comment = (comment: CommentProps) => {
     return (
         <div className={_comment}>
             <p>{comment.name}</p>

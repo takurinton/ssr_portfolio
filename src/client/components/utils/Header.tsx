@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import { css } from "linaria";
 import { h4, h5, pink_kawaii, theme_text, thick } from '../../../styles/theme';
 
@@ -40,12 +41,11 @@ const page = css`
     }
 `;
 
-
 export const Header = () => {
     return (
         <div className={header}>
             <p className={domain}>
-                <a href="/">takurinton.com</a>
+                <a href="/" className="home">takurinton.com</a>
             </p>
             <p className={page}>
                 <a href="/contact">contact</a>

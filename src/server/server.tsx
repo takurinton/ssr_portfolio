@@ -5,6 +5,7 @@ const path = require('path')
 
 import * as React from 'react';
 import ReactDomServer from 'react-dom/server'
+import fetch from 'node-fetch';
 
 import { Home } from '../client/pages/Home';
 import { About } from '../client/pages/About';
@@ -194,3 +195,35 @@ app.get('/contact', (req, res) => {
   res.raw.write('<!DOCTYPE html>');
   res.send(rendered);
 });
+
+app.get(`/pre/posts`, (req, res) => {
+    const page = (req.query as { page: undefined | string }).page ?? '';
+    const category = (req.query as { category: undefined | string }).category ?? '';
+    const qs: string = getParams(page, category) ?? '';
+
+    getPosts(qs)
+    .then(res => res.json())
+    .then(json => {
+        res.type('application/json');
+        res.send(json);
+    })
+    .catch(() => {
+        res.type('application/json');
+        res.send('page not found');
+    })
+})
+
+app.get(`/pre/post/:id`, (req, res) => {
+    const id: string = (req.params as { id: string }).id;
+    
+    getPost(id)
+    .then(res => res.json())
+    .then(json => {
+        res.type('application/json');
+        res.send(json);
+    })
+    .catch(() => {
+        res.type('application/json');
+        res.send('page not found');
+    })
+})

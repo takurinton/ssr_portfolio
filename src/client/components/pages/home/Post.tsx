@@ -52,13 +52,13 @@ const pubdate = css`
     color: #222222;
 `;
 
-export const Post: React.FC<PostProps> = (props: PostProps) => {
+export const Post = (props: PostProps) => {
     const pubDate = changeDate(props.pub_date);
     const image = props.contents_image_url === '' ? 'https://www.takurinton.com/me.jpeg' : 'https://takurinton.com' + props.contents_image_url;
     return (
         <div key={props.id} className={box}>
             <div>
-                <a href={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
+                <a href={`/post/${props.id}`} style={{ textDecoration: 'none' }} className="post">
                     <h1 className={title}>{props.title}</h1>
                     <img src={image} alt={props.title} /> <br /> 
                     <p className={pubdate}>{pubDate}</p>

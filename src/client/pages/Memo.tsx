@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { css } from 'linaria';
 
 import { Heading } from '../components/utils/Heading'
 import { Layout } from '../base/Layout';
 
-export const Memo = Layout(() => {
-    return (
+export const Memo = Layout(() => 
+  (
         <div>
             <div style={
                 { 
@@ -18,4 +17,4 @@ export const Memo = Layout(() => {
            {/* <div className={css.main} dangerouslySetInnerHTML={{ __html: md }} /> */}
         </div>
     )
-})
+)

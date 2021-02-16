@@ -14,7 +14,7 @@ const form = css`
     }
 `;
 
-export const Comments: React.FC = (props: { postId: number, comment: CommentProps[] }) => {
+export const Comments = (props: { postId: number, comment: CommentProps[] }) => {
     const {
         handleChange, 
         handleSubmit, 
