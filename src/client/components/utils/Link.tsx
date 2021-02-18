@@ -27,7 +27,7 @@ export const Link = ({
       fetch(href)
       .then(res => res.json())
       .then(json => {
-        ReactDOM.render(
+        ReactDOM.hydrate(
           <Component {...json} />, 
           document.getElementById('main')
         )
