@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { css } from "linaria";
 import { h4, h5, pink_kawaii, theme_text, thick } from '../../../styles/theme';
 
+import { Link } from './Link';
+
 const header = css`
     padding: 0 20% 10px;
     position: relative;
@@ -41,12 +43,15 @@ const page = css`
     }
 `;
 
+import { Home } from '../../pages/Home'
+
 export const Header = () => {
     return (
         <div className={header}>
-            <p className={domain}>
-                <a href="/" className="home">takurinton.com</a>
-            </p>
+            <Link {...{href: '/posts', Component: Home, isJson: true}} />
+                <p className={domain}>
+                    <a href="/" className="home">takurinton.com</a>
+                </p>
             <p className={page}>
                 <a href="/contact">contact</a>
             </p>
@@ -54,7 +59,7 @@ export const Header = () => {
                 <a href="/memo">memo</a>
             </p>
             <p className={page}>
-                <a href="/me">me</a>
+                <a href="/me" className="me">me</a>
             </p>
         </div>
     )
