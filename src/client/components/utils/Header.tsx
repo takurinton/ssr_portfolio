@@ -48,10 +48,9 @@ import { Home } from '../../pages/Home'
 export const Header = () => {
     return (
         <div className={header}>
-            <Link {...{href: '/posts', Component: Home, isJson: true}} />
-                <p className={domain}>
-                    <a href="/" className="home">takurinton.com</a>
-                </p>
+            <p className={domain}>
+                <a href="/" className="home">takurinton.com</a>
+            </p>
             <p className={page}>
                 <a href="/contact">contact</a>
             </p>
