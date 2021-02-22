@@ -2,10 +2,10 @@
 const fastify = require('fastify');
 const fastifyStatic = require('fastify-static');
 const path = require('path')
+const fetch = require('node-fetch');
 
 import * as React from 'react';
 import ReactDomServer from 'react-dom/server'
-import fetch from 'node-fetch';
 
 import { Home } from '../client/pages/Home';
 import { About } from '../client/pages/About';
@@ -215,7 +215,7 @@ app.get(`/pre/posts`, (req, res) => {
 
 app.get(`/pre/post/:id`, (req, res) => {
     const id: string = (req.params as { id: string }).id;
-    
+
     getPost(id)
     .then(res => res.json())
     .then(json => {
