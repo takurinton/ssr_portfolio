@@ -120,3 +120,7 @@ dist
 .now
 
 .vercel
+
+assets/
+api/
+.linaria-cache/

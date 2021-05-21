@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "lib": ["es6","dom"],
-    "module": "commonjs",
+    // "module": "commonjs",
     "noImplicitReturns": true,
     "outDir": "lib",
     "sourceMap": true,
     "target": "es6", 
     "jsx": "react", 
     "strict": false, 
-    "esModuleInterop": true
+    "esModuleInterop": true, 
+    "moduleResolution": "node"
   },
   "compileOnSave": true,
   "include": [
